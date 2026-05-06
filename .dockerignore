@@ -1,0 +1,5 @@
+raw/
+.git
+.github
+README.md
+*.py
