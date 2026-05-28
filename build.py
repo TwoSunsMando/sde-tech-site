@@ -164,10 +164,10 @@ def render(slug: str, title: str, description: str, body: str,
 HOME_HERO = """
 <section class="hero">
   <div class="container">
-    <h1>One Sarasota team for IT, phones, websites, and software.</h1>
+    <h1>One Sarasota team for IT, phones, websites, software, and AI.</h1>
     <p class="lead">SDE Tech is the long-running local partner small and mid-size businesses
     turn to when they want their technology handled by people they can actually reach. No
-    outsourced help desks. No vendor sprawl. Just the four things that keep your business
+    outsourced help desks. No vendor sprawl. Just the core technology that keeps your business
     running, all under one roof.</p>
     <a class="btn" href="contact-us.html">Talk to our team</a>
     <a class="btn btn-outline" href="about-us.html" style="margin-left:12px;">About SDE Tech</a>
