@@ -25,6 +25,7 @@ NAV_ITEMS = [
     ("VoIP Phones", "voip-phones.html", "voip-phones"),
     ("Website Services", "website-services.html", "website-services"),
     ("Software Development", "software-development.html", "software-development"),
+    ("AI & Automation", "ai-automation.html", "ai-automation"),
     ("About", "about-us.html", "about"),
     ("Contact", "contact-us.html", "contact"),
 ]
@@ -142,12 +143,13 @@ FOOTER = f"""
 
 def render(slug: str, title: str, description: str, body: str,
            active_key: str | None = None,
-           hero: bool = False, breadcrumb: str | None = None) -> str:
+           hero: bool = False, breadcrumb: str | None = None,
+           page_h1: str | None = None) -> str:
     if active_key is None:
         active_key = slug
     parts = [head(title, description, slug), header(active_key)]
     if not hero:
-        parts.append(page_title(title, breadcrumb=breadcrumb))
+        parts.append(page_title(page_h1 or title, breadcrumb=breadcrumb))
     parts.append('<main id="main">')
     parts.append(body)
     parts.append("</main>")
@@ -178,12 +180,13 @@ ICON_IT = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=
 ICON_PHONE = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>"""
 ICON_WEB = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>"""
 ICON_CODE = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>"""
+ICON_AI = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.7 4.8L18.5 9.5l-4.8 1.7L12 16l-1.7-4.8L5.5 9.5l4.8-1.7L12 3z"/><path d="M18.5 16l.9 2.6L22 19.5l-2.6.9L18.5 23l-.9-2.6L15 19.5l2.6-.9L18.5 16z"/></svg>"""
 
 HOME_TILES = f"""
 <section class="section">
   <div class="container">
     <h2 style="text-align:center;">What we do</h2>
-    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto;">Four practice areas, one local team. Pick what you need today, expand as your business grows.</p>
+    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto;">Five practice areas, one local team. Pick what you need today, expand as your business grows.</p>
     <div class="tile-grid">
       <a class="tile" href="it-services.html">
         <div class="icon">{ICON_IT}</div>
@@ -204,6 +207,11 @@ HOME_TILES = f"""
         <div class="icon">{ICON_CODE}</div>
         <h3>Software Development</h3>
         <p>Custom software built around how your business actually runs &mdash; not the other way around.</p>
+      </a>
+      <a class="tile" href="ai-automation.html">
+        <div class="icon">{ICON_AI}</div>
+        <h3>AI &amp; Automation</h3>
+        <p>Practical AI agents and workflow automation that take repetitive work off your team&rsquo;s plate &mdash; built around your business, not bolted on.</p>
       </a>
     </div>
   </div>
@@ -663,6 +671,71 @@ SOFTWARE_BODY = """
 """
 
 # ---------------------------------------------------------------------------
+
+AI_AUTOMATION_BODY = """
+<section class="section">
+  <div class="container">
+    <article class="prose">
+      <p>Everyone&rsquo;s talking about AI. We&rsquo;re busy building it. SDE Tech designs
+      and ships practical AI tools that handle real work for real businesses &mdash; the
+      same way we&rsquo;ve built production software for two decades. No hype, no science
+      projects. Just automation that earns its keep.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2 style="text-align:center;margin-top:0;">What we build</h2>
+    <div class="col-grid" style="grid-template-columns:repeat(2,1fr);max-width:880px;margin:32px auto 0;">
+      <div class="col">
+        <h3>Customer messaging assistants</h3>
+        <p>AI that answers, qualifies, and books over text and web chat, so leads don&rsquo;t slip through the cracks.</p>
+      </div>
+      <div class="col">
+        <h3>Workflow automation</h3>
+        <p>Take the repetitive steps out of your day &mdash; data entry, scheduling, follow-ups, reporting &mdash; and let software handle them.</p>
+      </div>
+      <div class="col">
+        <h3>Document &amp; data processing</h3>
+        <p>Pull structure out of invoices, forms, records, and email so your team stops copying and pasting.</p>
+      </div>
+      <div class="col">
+        <h3>Custom AI agents</h3>
+        <p>Purpose-built assistants trained on how your business actually works, connected to the tools you already use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <article class="prose">
+      <h2>How we work</h2>
+      <p>We start by understanding what actually slows your business down &mdash; then we
+      tell you where AI helps and, just as honestly, where it doesn&rsquo;t. We build it,
+      put it in production, and maintain it. One local team owns the whole thing, start to
+      finish.</p>
+
+      <h2>Why SDE Tech</h2>
+      <p>We&rsquo;ve been shipping production software since before &ldquo;AI&rdquo; was a
+      marketing word. We know the difference between a flashy demo and a system you can
+      actually run your business on. And when you need us, you&rsquo;re calling a Sarasota
+      number and getting a straight answer.</p>
+    </article>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Curious where AI could help?</h2>
+    <p>Tell us what your business runs on today. We&rsquo;ll tell you where AI would make a real difference &mdash; and where it wouldn&rsquo;t.</p>
+    <p style="margin-top:24px;"><a class="btn" href="contact-us.html">Contact us today</a></p>
+  </div>
+</section>
+"""
+
+# ---------------------------------------------------------------------------
 # Compliance pages
 # ---------------------------------------------------------------------------
 
@@ -982,6 +1055,14 @@ PAGES = [
         "body": SOFTWARE_BODY,
     },
     {
+        "slug": "ai-automation",
+        "title": "AI &amp; Automation | SDE Tech | Sarasota, FL",
+        "page_h1": "AI &amp; Automation",
+        "description": "SDE Tech builds practical AI agents and workflow automation for small and mid-size businesses &mdash; customer messaging, document processing, and custom AI tools, built and maintained by a local Sarasota team.",
+        "breadcrumb": "AI &amp; Automation",
+        "body": AI_AUTOMATION_BODY,
+    },
+    {
         "slug": "privacy-policy",
         "title": "Privacy Policy",
         "description": "How SDE Tech LLC collects, uses, and protects the information you provide. Includes our data-handling practices for SMS messaging.",
@@ -1008,6 +1089,25 @@ PAGES = [
 ]
 
 
+def write_sitemap():
+    from datetime import date as _date
+    today = _date.today().isoformat()
+    urls = []
+    for p in PAGES:
+        loc = "https://sde-tech.com/" if p["slug"] == "index" else f"https://sde-tech.com/{p['slug']}.html"
+        priority = "1.0" if p["slug"] == "index" else "0.8"
+        urls.append(
+            f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>{priority}</priority>\n  </url>"
+        )
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(urls) + "\n</urlset>\n"
+    )
+    with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(xml)
+
+
 def build():
     os.makedirs(OUT, exist_ok=True)
     written = []
@@ -1020,11 +1120,14 @@ def build():
             active_key=p.get("active_key", p["slug"]),
             hero=p.get("hero", False),
             breadcrumb=p.get("breadcrumb"),
+            page_h1=p.get("page_h1"),
         )
         path = os.path.join(OUT, f"{p['slug']}.html")
         with open(path, "w", encoding="utf-8") as f:
             f.write(html)
         written.append((p["slug"], len(html)))
+
+    write_sitemap()
 
     # Word-count summary (visible text only).
     print(f"{'page':<26}{'bytes':>8}  words")
@@ -1037,6 +1140,7 @@ def build():
         text = re.sub(r"&[a-zA-Z]+;", " ", text)
         words = len(text.split())
         print(f"{slug:<26}{size:>8}  {words}")
+    print(f"\nWrote {len(written)} pages + sitemap.xml")
 
 
 if __name__ == "__main__":

@@ -227,17 +227,14 @@ article.prose ul li { margin-bottom: 6px; }
 
 /* ---------- Service tiles (homepage) ---------- */
 
+/* Flex-wrap layout: works cleanly for 4, 5, or any number of tiles.
+   Orphan rows center automatically. Each tile holds a 200-260px width band. */
 .tile-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin-top: 40px;
-}
-@media (max-width: 960px) {
-  .tile-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 520px) {
-  .tile-grid { grid-template-columns: 1fr; }
 }
 .tile {
   display: block;
@@ -247,6 +244,14 @@ article.prose ul li { margin-bottom: 6px; }
   padding: 28px 24px;
   color: var(--slate-dark);
   transition: border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+  flex: 1 1 200px;
+  max-width: 260px;
+}
+@media (max-width: 720px) {
+  .tile { max-width: calc(50% - 10px); flex-basis: 180px; }
+}
+@media (max-width: 460px) {
+  .tile { max-width: 100%; flex-basis: 100%; }
 }
 .tile:hover {
   border-color: var(--blue);
