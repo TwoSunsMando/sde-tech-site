@@ -81,7 +81,6 @@ panel.
 |------|---------|
 | `/` | Homepage &mdash; hero, four service tiles, about teaser, contact CTA |
 | `/about-us.html` | About SDE Tech |
-| `/team-leaders.html` | Team leader bios (placeholder &mdash; needs Dan's content) |
 | `/contact-us.html` | Contact form, address, hours, embedded map |
 | `/it-services.html` | IT services details |
 | `/voip-phones.html` | 3CX VoIP phone systems |

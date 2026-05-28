@@ -31,7 +31,7 @@ NAV_ITEMS = [
 ]
 
 # Pages that map to the "About" nav slot.
-ABOUT_KEYS = {"about-us", "team-leaders"}
+ABOUT_KEYS = {"about-us"}
 
 
 def head(title: str, description: str, slug: str) -> str:
@@ -224,7 +224,7 @@ HOME_ABOUT_TEASER = """
     <div class="about-teaser">
       <div>
         <h2>Local, hands-on, and easy to reach.</h2>
-        <p>SDE Tech is owned and run by Dan Steiner and Steve Johnson, with combined experience that spans the full range of business technology &mdash; from medical offices to manufacturing to retail. We pick up the phone, we show up on site when it matters, and we don&rsquo;t pad invoices.</p>
+        <p>SDE Tech is locally owned and run, with combined experience that spans the full range of business technology &mdash; from medical offices to manufacturing to retail. We pick up the phone, we show up on site when it matters, and we don&rsquo;t pad invoices.</p>
         <p><a href="about-us.html">Read more about SDE Tech &rsaquo;</a></p>
       </div>
       <div class="teaser-card">
@@ -265,55 +265,9 @@ ABOUT_BODY = """
 
       <p>SDE Tech got its start maintaining a large number of medical offices, environments
       that demand the latest in technology when it comes to computers, internet connectivity,
-      phone systems, and specialized business applications. Our team has since worked across
-      manufacturing, retail, wholesale, shipping and packaging, web-based companies, healthcare,
-      financial services, and more.</p>
-
-      <h2>Meet the team</h2>
-      <p>SDE Tech is owned by Dan Steiner and Steve Johnson. <a href="team-leaders.html">Read more about our team leaders &rsaquo;</a></p>
-    </article>
-  </div>
-</section>
-"""
-
-# ---------------------------------------------------------------------------
-
-TEAM_BODY = """
-<!--
-  Team leader content needs to come from Dan.
-  Each card below is a placeholder. Fill in:
-    - <h3> with the leader's full name
-    - .role with their title
-    - .photo-placeholder div: replace with an <img> tag once a headshot is available
-    - .bio paragraph with 2-4 sentences of background
-  When ready, remove this comment block.
--->
-<section class="section">
-  <div class="container">
-    <article class="prose" style="max-width:880px;">
-      <p>SDE Tech is owned and operated by two long-tenured technology professionals with
-      complementary backgrounds across IT operations, networking, telephony, and business
-      software. Below is a quick introduction to the people you&rsquo;ll be working with.</p>
-
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="photo-placeholder" aria-hidden="true">Photo</div>
-          <h3>Dan Steiner</h3>
-          <p class="role">Co-Owner</p>
-          <p class="bio">Bio placeholder &mdash; Dan, please add 2&ndash;4 sentences covering
-          background, areas of focus, and what you typically handle for clients.</p>
-        </div>
-
-        <div class="team-card">
-          <div class="photo-placeholder" aria-hidden="true">Photo</div>
-          <h3>Steve Johnson</h3>
-          <p class="role">Co-Owner</p>
-          <p class="bio">Bio placeholder &mdash; Steve, please add 2&ndash;4 sentences covering
-          background, areas of focus, and what you typically handle for clients.</p>
-        </div>
-      </div>
-
-      <p style="margin-top:32px;">Want to know more about how we work? <a href="about-us.html">Read about SDE Tech &rsaquo;</a></p>
+      phone systems, and specialized business applications. The SDE Tech team has since
+      worked across manufacturing, retail, wholesale, shipping and packaging, web-based
+      companies, healthcare, financial services, and more.</p>
     </article>
   </div>
 </section>
@@ -1006,17 +960,9 @@ PAGES = [
     {
         "slug": "about-us",
         "title": "About SDE Tech",
-        "description": "SDE Tech is owned by Dan Steiner and Steve Johnson and brings over 20 years of IT experience to small and mid-size businesses across Sarasota and the Gulf Coast.",
+        "description": "SDE Tech is a locally owned and run Sarasota IT services company with over 20 years of combined experience serving small and mid-size businesses across Sarasota and the Gulf Coast.",
         "breadcrumb": "About",
         "body": ABOUT_BODY,
-    },
-    {
-        "slug": "team-leaders",
-        "title": "Our Team Leaders",
-        "description": "Meet the team leaders behind SDE Tech &mdash; the people running your IT, phone, website, and software projects in Sarasota.",
-        "active_key": "about",
-        "breadcrumb": '<a href="about-us.html">About</a> &rsaquo; Team Leaders',
-        "body": TEAM_BODY,
     },
     {
         "slug": "contact-us",
