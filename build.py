@@ -300,8 +300,20 @@ CONTACT_BODY = """
           <div class="field">
             <label for="cf-phone">Phone (optional)</label>
             <input type="tel" id="cf-phone" name="phone">
-            <p class="help">By providing your phone number, you consent to receive SMS messages
-            from SDE Tech regarding your inquiry. See our <a href="sms-messaging-policy.html">SMS Messaging Policy</a>.</p>
+          </div>
+          <div class="field checkbox-field">
+            <label class="checkbox-label" for="cf-sms-consent">
+              <input type="checkbox" id="cf-sms-consent" name="sms_consent" value="yes">
+              <span class="checkbox-text">
+                <strong>Yes, text me too.</strong> I agree to receive SMS messages from
+                SDE Tech LLC related to my inquiry &mdash; including replies to my questions,
+                appointment scheduling, and service updates. Message frequency varies.
+                Message and data rates may apply. Reply STOP to unsubscribe or HELP for help.
+                See our <a href="sms-messaging-policy.html">SMS Messaging Policy</a> and
+                <a href="privacy-policy.html">Privacy Policy</a>. Optional &mdash; you can
+                still submit this form without checking this box.
+              </span>
+            </label>
           </div>
           <div class="field">
             <label for="cf-topic">What can we help with?</label>
