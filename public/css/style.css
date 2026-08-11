@@ -462,18 +462,21 @@ form.contact-form .help {
   margin-top: 6px;
 }
 
-/* SMS opt-in checkbox — CTIA/TCPA compliant explicit consent */
+/* SMS opt-in checkbox — CTIA/TCPA compliant explicit consent.
+   Grid layout (auto | 1fr) forces checkbox-left + text-right at any width.
+   !important on width/padding for the checkbox specifically, because the
+   generic form.contact-form input rule sets width: 100% and some browsers
+   don't apply the more-specific override consistently. */
 form.contact-form .checkbox-field { margin-top: 4px; margin-bottom: 20px; }
 form.contact-form .checkbox-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 14px;
+  align-items: start;
   font-weight: 400;
   color: var(--slate-dark);
-  font-size: 13px;
-  line-height: 1.5;
   cursor: pointer;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--bg);
@@ -481,22 +484,40 @@ form.contact-form .checkbox-label {
   margin-bottom: 0;
 }
 form.contact-form .checkbox-label:hover { border-color: var(--slate-muted); }
-form.contact-form .checkbox-label input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  margin: 2px 0 0 0;
-  padding: 0;
-  flex-shrink: 0;
-  accent-color: var(--blue);
-  cursor: pointer;
-}
 form.contact-form .checkbox-label:has(input:checked) {
   border-color: var(--blue);
   background: rgba(30, 58, 138, 0.04);
 }
-form.contact-form .checkbox-text strong { color: var(--slate-dark); font-weight: 700; }
-form.contact-form .checkbox-text a { color: var(--blue); text-decoration: underline; }
-form.contact-form .checkbox-text a:hover { text-decoration: none; }
+form.contact-form .checkbox-label input[type="checkbox"] {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px;
+  padding: 0 !important;
+  margin: 0 !important;
+  accent-color: var(--blue);
+  cursor: pointer;
+  align-self: start;
+  justify-self: start;
+}
+form.contact-form .checkbox-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+form.contact-form .checkbox-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--slate-dark);
+  line-height: 1.3;
+}
+form.contact-form .checkbox-fine {
+  font-size: 12.5px;
+  color: var(--slate-muted);
+  line-height: 1.5;
+}
+form.contact-form .checkbox-fine a { color: var(--blue); text-decoration: underline; }
+form.contact-form .checkbox-fine a:hover { text-decoration: none; }
 
 iframe.map {
   width: 100%;

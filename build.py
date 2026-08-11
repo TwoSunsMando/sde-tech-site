@@ -304,14 +304,17 @@ CONTACT_BODY = """
           <div class="field checkbox-field">
             <label class="checkbox-label" for="cf-sms-consent">
               <input type="checkbox" id="cf-sms-consent" name="sms_consent" value="yes">
-              <span class="checkbox-text">
-                <strong>Yes, text me too.</strong> I agree to receive SMS messages from
-                SDE Tech LLC related to my inquiry &mdash; including replies to my questions,
-                appointment scheduling, and service updates. Message frequency varies.
-                Message and data rates may apply. Reply STOP to unsubscribe or HELP for help.
-                See our <a href="sms-messaging-policy.html">SMS Messaging Policy</a> and
-                <a href="privacy-policy.html">Privacy Policy</a>. Optional &mdash; you can
-                still submit this form without checking this box.
+              <span class="checkbox-body">
+                <span class="checkbox-title">Yes, text me too</span>
+                <span class="checkbox-fine">
+                  I agree to receive SMS messages from SDE Tech LLC related to my inquiry
+                  &mdash; replies, appointment scheduling, and service updates. Message
+                  frequency varies. Message and data rates may apply. Reply STOP to
+                  unsubscribe or HELP for help. See our
+                  <a href="sms-messaging-policy.html">SMS Messaging Policy</a> and
+                  <a href="privacy-policy.html">Privacy Policy</a>.
+                  Optional &mdash; you can still submit this form without checking this box.
+                </span>
               </span>
             </label>
           </div>
