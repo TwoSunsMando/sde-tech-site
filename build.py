@@ -284,7 +284,7 @@ CONTACT_BODY = """
         <p>Tell us what your business is dealing with and what you&rsquo;d like to change. We
         respond to inquiries within one business day.</p>
 
-        <form class="contact-form" action="mailto:info@sde-tech.com" method="post" enctype="text/plain">
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/meajgzpv" method="POST">
           <div class="field">
             <label for="cf-name">Your name</label>
             <input type="text" id="cf-name" name="name" required>
@@ -333,8 +333,60 @@ CONTACT_BODY = """
             <textarea id="cf-message" name="message" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send message</button>
-          <p class="help" style="margin-top:12px;">This form opens your email client. Prefer to write us directly? Email <a href="mailto:info@sde-tech.com">info@sde-tech.com</a>.</p>
+          <p id="cf-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="help" style="margin-top:12px;">Prefer to write us directly? Email <a href="mailto:info@sde-tech.com">info@sde-tech.com</a>.</p>
         </form>
+
+        <script>
+          (function () {
+            var form = document.getElementById('contactForm');
+            if (!form) return;
+            var status = document.getElementById('cf-status');
+            var btn = form.querySelector('button[type="submit"]');
+            var origBtnText = btn.textContent;
+
+            form.addEventListener('submit', function (e) {
+              e.preventDefault();
+              status.className = 'form-status';
+              status.textContent = '';
+
+              if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+              }
+
+              btn.disabled = true;
+              btn.textContent = 'Sending…';
+
+              fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+              })
+                .then(function (res) {
+                  btn.disabled = false;
+                  btn.textContent = origBtnText;
+                  if (res.ok) {
+                    status.className = 'form-status success';
+                    status.textContent = "Thanks — we've got your message and will respond within one business day.";
+                    form.reset();
+                    return;
+                  }
+                  return res.json().then(function (d) {
+                    status.className = 'form-status error';
+                    status.textContent = (d && d.errors && d.errors.map(function (err) { return err.message; }).join(', '))
+                      || 'Something went wrong. Please try again, or email info@sde-tech.com directly.';
+                  });
+                })
+                .catch(function () {
+                  btn.disabled = false;
+                  btn.textContent = origBtnText;
+                  status.className = 'form-status error';
+                  status.textContent = 'Network error. Please try again, or email info@sde-tech.com directly.';
+                });
+            });
+          })();
+        </script>
       </div>
 
       <div>
