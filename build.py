@@ -18,6 +18,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "public")
 
 LAST_UPDATED = "May 6, 2026"
+SMS_LAST_UPDATED = "October 5, 2026"   # SDE Voice Agents texts added (10DLC)
 COPYRIGHT_YEAR = 2026
 
 NAV_ITEMS = [
@@ -309,8 +310,10 @@ CONTACT_BODY = """
               <span class="checkbox-body">
                 <span class="checkbox-title">Yes, text me too</span>
                 <span class="checkbox-fine">
-                  I agree to receive SMS messages from SDE Tech LLC related to my inquiry
-                  &mdash; replies, appointment scheduling, and service updates. Message
+                  I agree to receive SMS messages from SDE Tech LLC about my inquiry and
+                  my SDE Tech services &mdash; replies, appointment scheduling, support ticket
+                  updates, service announcements, and, for SDE Voice Agents clients, alerts
+                  when a caller leaves me a message and dashboard help I ask for. Message
                   frequency varies. Message and data rates may apply. Reply STOP to
                   unsubscribe or HELP for help. See our
                   <a href="sms-messaging-policy.html">SMS Messaging Policy</a> and
@@ -942,7 +945,7 @@ SMS_BODY = f"""
 <section class="legal">
   <div class="container">
     <article>
-      <p class="updated">Last updated: {LAST_UPDATED}</p>
+      <p class="updated">Last updated: {SMS_LAST_UPDATED}</p>
 
       <h2 style="margin-top:0;">About SDE Tech</h2>
       <p>SDE Tech LLC is an IT consulting and services company based in Sarasota, Florida.
@@ -959,12 +962,17 @@ SMS_BODY = f"""
         <li>Support ticket updates and resolution notices.</li>
         <li>Service announcements relevant to your account (for example, scheduled
         maintenance windows for managed-service clients).</li>
+        <li>SDE Voice Agents call alerts: when a caller leaves a message with your
+        business&rsquo;s SDE Voice Agents phone agent, a text with the caller&rsquo;s name,
+        callback number and reason.</li>
+        <li>SDE Voice Agents help: step-by-step dashboard instructions you ask for on a
+        support call.</li>
       </ul>
 
       <h2>Consent (opt-in)</h2>
       <p><strong>By providing your phone number, you consent to receive SMS messages from
       SDE Tech regarding your service inquiry, appointment scheduling, support ticket
-      updates, or service announcements.</strong> Consent is not required as a condition of
+      updates, service announcements, or SDE Voice Agents call alerts and help texts.</strong> Consent is not required as a condition of
       purchasing any goods or services.</p>
 
       <h2>Opt-out</h2>
