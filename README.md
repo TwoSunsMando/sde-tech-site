@@ -59,7 +59,7 @@ python3 build.py
 - [ ] Mobile menu (hamburger) opens and closes on a phone.
 - [ ] All four service pages link from the homepage tiles.
 - [ ] Footer links work: Privacy Policy, Terms of Service, SMS Messaging Policy.
-- [ ] Contact form opens an email draft to `info@sde-tech.com`.
+- [ ] Contact form submits via Formspree (form `xvkzogpz`) and the message arrives at `info@sde-tech.com`.
 - [ ] Embedded Google Map on `/contact-us.html` shows the Bee Ridge Road office.
 - [ ] Partner badges in the footer link to 3CX and the Manatee Chamber of Commerce.
 - [ ] No broken images (especially the logo and partner badges).
