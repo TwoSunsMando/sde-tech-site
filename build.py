@@ -284,7 +284,9 @@ CONTACT_BODY = """
         <p>Tell us what your business is dealing with and what you&rsquo;d like to change. We
         respond to inquiries within one business day.</p>
 
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/meajgzpv" method="POST">
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvkzogpz" method="POST">
+          <input type="hidden" name="_subject" value="New inquiry from sde-tech.com">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="cf-name">Your name</label>
             <input type="text" id="cf-name" name="name" required>
