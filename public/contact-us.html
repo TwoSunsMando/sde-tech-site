@@ -38,6 +38,7 @@
       <li><a href="website-services.html">Website Services</a></li>
       <li><a href="software-development.html">Software Development</a></li>
       <li><a href="ai-automation.html">AI & Automation</a></li>
+      <li><a href="products.html">Products</a></li>
       <li><a href="about-us.html">About</a></li>
       <li><a href="contact-us.html" class="active">Contact</a></li>
       </ul>
@@ -106,8 +107,19 @@
               <option>VoIP Phones</option>
               <option>Website Services</option>
               <option>Software Development</option>
+              <option value="SDE Voice Agents" data-key="voice">SDE Voice Agents (AI receptionist)</option>
+              <option value="SDE SMS" data-key="sms">SDE SMS (business texting)</option>
+              <option value="SDE Web Fax" data-key="fax">SDE Web Fax</option>
+              <option value="Products" data-key="products">Pricing for an SDE app</option>
               <option>Something else</option>
             </select>
+            <script>
+              (function () {
+                var key = new URLSearchParams(location.search).get('topic');
+                var opt = key && document.querySelector('#cf-topic option[data-key="' + key + '"]');
+                if (opt) opt.selected = true;
+              })();
+            </script>
           </div>
           <div class="field">
             <label for="cf-message">Message</label>
@@ -215,6 +227,14 @@
             <img src="images/MCC-150x150.png" alt="Manatee Chamber of Commerce member" width="80" height="80">
           </a>
         </div>
+      </div>
+      <div>
+        <h4>Customer sign-in</h4>
+        <ul>
+          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice Agents</a></li>
+          <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
+          <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
+        </ul>
       </div>
       <div>
         <h4>Compliance</h4>

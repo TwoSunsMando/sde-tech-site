@@ -27,6 +27,7 @@ NAV_ITEMS = [
     ("Website Services", "website-services.html", "website-services"),
     ("Software Development", "software-development.html", "software-development"),
     ("AI & Automation", "ai-automation.html", "ai-automation"),
+    ("Products", "products.html", "products"),
     ("About", "about-us.html", "about"),
     ("Contact", "contact-us.html", "contact"),
 ]
@@ -124,6 +125,14 @@ FOOTER = f"""
         </div>
       </div>
       <div>
+        <h4>Customer sign-in</h4>
+        <ul>
+          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice Agents</a></li>
+          <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
+          <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
+        </ul>
+      </div>
+      <div>
         <h4>Compliance</h4>
         <ul>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>
@@ -183,6 +192,9 @@ ICON_WEB = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke
 ICON_CODE = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>"""
 ICON_AI = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.7 4.8L18.5 9.5l-4.8 1.7L12 16l-1.7-4.8L5.5 9.5l4.8-1.7L12 3z"/><path d="M18.5 16l.9 2.6L22 19.5l-2.6.9L18.5 23l-.9-2.6L15 19.5l2.6-.9L18.5 16z"/></svg>"""
 
+ICON_SMS = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1z"/><path d="M8 10h8M8 13h5"/></svg>"""
+ICON_FAX = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h8l3 3v3"/><rect x="3" y="9" width="18" height="9" rx="1.5"/><path d="M7 18v3h10v-3M7 13h4"/></svg>"""
+
 HOME_TILES = f"""
 <section class="section">
   <div class="container">
@@ -215,6 +227,155 @@ HOME_TILES = f"""
         <p>Practical AI agents and workflow automation that take repetitive work off your team&rsquo;s plate &mdash; built around your business, not bolted on.</p>
       </a>
     </div>
+  </div>
+</section>
+"""
+
+
+HOME_PRODUCTS = f"""
+<section class="section alt">
+  <div class="container">
+    <h2 style="text-align:center;">Apps from SDE Tech</h2>
+    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto;">Business apps we build, run and support ourselves. Already a customer? Add one to your account.</p>
+    <div class="tile-grid">
+      <a class="tile" href="products.html#voice-agents">
+        <div class="icon">{ICON_AI}</div>
+        <h3>SDE Voice Agents</h3>
+        <p>An AI receptionist that answers every call, transfers to your team and takes messages after hours.</p>
+      </a>
+      <a class="tile" href="products.html#sms">
+        <div class="icon">{ICON_SMS}</div>
+        <h3>SDE SMS</h3>
+        <p>Two-way business texting and text blasts for your whole team, from any browser or phone.</p>
+      </a>
+      <a class="tile" href="products.html#web-fax">
+        <div class="icon">{ICON_FAX}</div>
+        <h3>SDE Web Fax</h3>
+        <p>Send faxes from your browser with a branded cover page and a full history. No fax machine needed.</p>
+      </a>
+    </div>
+  </div>
+</section>
+"""
+
+
+PRODUCTS_BODY = f"""
+<section class="section">
+  <div class="container">
+    <article class="prose">
+      <p>Alongside IT, phones and websites, SDE Tech builds and runs its own business apps. Each one is
+      set up and supported by the same local team you already call. Existing customers can sign in below;
+      to add one to your account, <a href="contact-us.html?topic=products#contactForm">ask us for pricing</a>.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section alt" id="voice-agents">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">{ICON_AI} SDE Voice Agents</p>
+        <h2 style="margin-top:0;">An AI receptionist that answers every call.</h2>
+        <p>Day or night, every caller gets a friendly, natural voice that knows your business, instead of
+        voicemail or a phone tree.</p>
+        <ul class="feature-list">
+          <li>Answers in English, Spanish and other languages</li>
+          <li>Transfers callers to the right person during office hours, including straight to 3CX extensions</li>
+          <li>Takes complete messages after hours and emails them to your team</li>
+          <li>Screens out sales and spam calls</li>
+          <li>Change the greeting, hours, answers and who gets which calls from an online dashboard</li>
+        </ul>
+        <div class="product-actions">
+          <a class="btn btn-primary" href="https://voiceai.sde-tech.com/signup">Get your AI receptionist</a>
+          <a href="contact-us.html?topic=voice#contactForm">Ask for pricing</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <h3>Hear it for yourself</h3>
+        <p>Our own local line is answered by SDE Voice Agents. Call and ask it anything about SDE Tech.</p>
+        <p class="product-phone"><a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a></p>
+        <h3>Good for</h3>
+        <ul>
+          <li>Offices that miss calls when everyone is busy</li>
+          <li>After-hours and weekend coverage</li>
+          <li>Businesses already on a 3CX phone system</li>
+        </ul>
+        <p class="signin">Already a customer? <a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">Sign in to SDE Voice Agents &rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sms">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">{ICON_SMS} SDE SMS</p>
+        <h2 style="margin-top:0;">Business texting for your whole team.</h2>
+        <p>Text customers from your company&rsquo;s own numbers, from any browser or phone, with your
+        team working the same conversations.</p>
+        <ul class="feature-list">
+          <li>Two-way texting on your business numbers</li>
+          <li>Name each number (Main, Accounting, Service) and choose which team members can use it</li>
+          <li>Text blasts: one message to many customers, now or scheduled, with delivered and failed counts</li>
+          <li>Contacts with spreadsheet import, plus private team chat</li>
+          <li>Installs on your phone with notifications for new messages</li>
+          <li>STOP replies and blocked numbers are handled automatically</li>
+        </ul>
+        <p class="muted small">Text blasts go only to people who have agreed to receive texts from your business.</p>
+        <div class="product-actions">
+          <a class="btn btn-primary" href="contact-us.html?topic=sms#contactForm">Ask for pricing</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <h3>Good for</h3>
+        <ul>
+          <li>Teams sharing one business number</li>
+          <li>Appointment confirmations and customer updates</li>
+          <li>Customers who would rather text than call</li>
+        </ul>
+        <p class="signin">Already a customer? <a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">Sign in to SDE SMS &rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="web-fax">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">{ICON_FAX} SDE Web Fax</p>
+        <h2 style="margin-top:0;">Send faxes from your browser.</h2>
+        <p>No fax machine, no phone line, no paper jams. Upload the document, pick the recipient, send.</p>
+        <ul class="feature-list">
+          <li>Drag and drop documents to fax to any fax number</li>
+          <li>A cover page with your logo and a memo, added automatically</li>
+          <li>Saved fax contacts, so recipients are a click away</li>
+          <li>Fax history for you or your whole company, with reports you can export to Excel</li>
+          <li>Multiple users under one company account</li>
+        </ul>
+        <div class="product-actions">
+          <a class="btn btn-primary" href="contact-us.html?topic=fax#contactForm">Ask for pricing</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <h3>Good for</h3>
+        <ul>
+          <li>Offices that still fax: medical, legal, insurance</li>
+          <li>Retiring an old fax machine and its phone line</li>
+          <li>Keeping a record of every fax your team sends</li>
+        </ul>
+        <p class="signin">Already a customer? <a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">Sign in to SDE Web Fax &rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Want one of these on your account?</h2>
+    <p>Tell us which app and roughly how your team would use it. We&rsquo;ll send pricing and get you set up.</p>
+    <p style="margin-top:24px;"><a class="btn" href="contact-us.html?topic=products#contactForm">Ask for pricing</a></p>
   </div>
 </section>
 """
@@ -330,8 +491,19 @@ CONTACT_BODY = """
               <option>VoIP Phones</option>
               <option>Website Services</option>
               <option>Software Development</option>
+              <option value="SDE Voice Agents" data-key="voice">SDE Voice Agents (AI receptionist)</option>
+              <option value="SDE SMS" data-key="sms">SDE SMS (business texting)</option>
+              <option value="SDE Web Fax" data-key="fax">SDE Web Fax</option>
+              <option value="Products" data-key="products">Pricing for an SDE app</option>
               <option>Something else</option>
             </select>
+            <script>
+              (function () {
+                var key = new URLSearchParams(location.search).get('topic');
+                var opt = key && document.querySelector('#cf-topic option[data-key="' + key + '"]');
+                if (opt) opt.selected = true;
+              })();
+            </script>
           </div>
           <div class="field">
             <label for="cf-message">Message</label>
@@ -459,7 +631,7 @@ IT_BODY = """
           <li>Network cabling &mdash; voice and data</li>
           <li>Internet connectivity: broadband, T1, FIOS, cable, DSL</li>
           <li>Wireless systems</li>
-          <li>VoIP telephone systems, toll-free, and e-faxing</li>
+          <li>VoIP telephone systems, toll-free, and e-faxing (see <a href="products.html#web-fax">SDE Web Fax</a>)</li>
           <li>Server setup, maintenance, and troubleshooting</li>
           <li>Firewall installation and administration</li>
           <li>Employee adds, moves, and changes</li>
@@ -706,6 +878,8 @@ AI_AUTOMATION_BODY = """
       and ships practical AI tools that handle real work for real businesses &mdash; the
       same way we&rsquo;ve built production software for two decades. No hype, no science
       projects. Just automation that earns its keep.</p>
+      <p>Want to hear one? <a href="products.html#voice-agents">SDE Voice Agents</a>, our AI phone
+      receptionist, answers our own local line at <a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a>.</p>
     </article>
   </div>
 </section>
@@ -1032,7 +1206,7 @@ PAGES = [
         "description": "SDE Tech is a Sarasota, Florida IT services company providing managed IT, 3CX VoIP phone systems, website services, and custom software development to small and mid-size businesses.",
         "active_key": "home",
         "hero": True,
-        "body": HOME_HERO + HOME_TILES + HOME_ABOUT_TEASER + HOME_CTA,
+        "body": HOME_HERO + HOME_TILES + HOME_PRODUCTS + HOME_ABOUT_TEASER + HOME_CTA,
     },
     {
         "slug": "about-us",
@@ -1084,6 +1258,14 @@ PAGES = [
         "description": "SDE Tech builds practical AI agents and workflow automation for small and mid-size businesses &mdash; customer messaging, document processing, and custom AI tools, built and maintained by a local Sarasota team.",
         "breadcrumb": "AI &amp; Automation",
         "body": AI_AUTOMATION_BODY,
+    },
+    {
+        "slug": "products",
+        "title": "Products | SDE Voice Agents, SDE SMS, SDE Web Fax | SDE Tech",
+        "page_h1": "Products",
+        "description": "Business apps built and supported by SDE Tech in Sarasota: SDE Voice Agents AI receptionist, SDE SMS business texting, and SDE Web Fax online faxing.",
+        "breadcrumb": "Products",
+        "body": PRODUCTS_BODY,
     },
     {
         "slug": "privacy-policy",

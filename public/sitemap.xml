@@ -49,6 +49,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sde-tech.com/products.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sde-tech.com/privacy-policy.html</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
