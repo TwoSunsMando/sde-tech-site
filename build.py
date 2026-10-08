@@ -110,7 +110,7 @@ FOOTER = f"""
       <div>
         <h4>SDE Tech</h4>
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
-        <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a></p>
+        <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
       </div>
       <div>
@@ -292,7 +292,7 @@ PRODUCTS_BODY = f"""
       </div>
       <div class="product-card">
         <h3>Hear it for yourself</h3>
-        <p>Our own local line is answered by SDE Voice Agents. Call and ask it anything about SDE Tech.</p>
+        <p>SDE Tech's own phone lines are answered by SDE Voice Agents. Call and ask it anything about SDE Tech.</p>
         <p class="product-phone"><a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a></p>
         <h3>Good for</h3>
         <ul>
@@ -572,7 +572,7 @@ CONTACT_BODY = """
           <p class="label">Office</p>
           <p class="value">2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
           <p class="label">Phone</p>
-          <p class="value"><a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a><br><small>Our local line is answered by SDE Tech's own AI receptionist, the same one we set up for businesses.</small></p>
+          <p class="value"><a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a><br><small>Our phone lines are answered by SDE Tech's own AI receptionist, the same one we set up for businesses.</small></p>
           <p class="label">Email</p>
           <p class="value"><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
           <p class="label">Hours</p>
@@ -879,7 +879,7 @@ AI_AUTOMATION_BODY = """
       same way we&rsquo;ve built production software for two decades. No hype, no science
       projects. Just automation that earns its keep.</p>
       <p>Want to hear one? <a href="products.html#voice-agents">SDE Voice Agents</a>, our AI phone
-      receptionist, answers our own local line at <a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a>.</p>
+      receptionist, answers our own phone lines. Call <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a> to hear it.</p>
     </article>
   </div>
 </section>
