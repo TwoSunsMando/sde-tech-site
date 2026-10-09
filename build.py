@@ -19,7 +19,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "public")
 
 LAST_UPDATED = "May 6, 2026"
-SMS_LAST_UPDATED = "October 9, 2026"   # bump again if this merges on a later date
+# Set to actual deploy date at merge.
+SMS_LAST_UPDATED = "October 9, 2026"
 COPYRIGHT_YEAR = 2026
 
 NAV_ITEMS = [
@@ -1136,6 +1137,7 @@ SMS_BODY = f"""
 <section class="legal">
   <div class="container">
     <article>
+      <!-- Set to actual deploy date at merge. -->
       <p class="updated">Last updated: {SMS_LAST_UPDATED}</p>
 
       <h2 style="margin-top:0;">About SDE Tech</h2>
@@ -1144,9 +1146,10 @@ SMS_BODY = f"""
       software development to business clients.</p>
 
       <h2>What messages you can expect</h2>
-      <p>If you provide your mobile phone number to SDE Tech &mdash; through our website
-      contact form, by email, or by phone &mdash; you may receive SMS (text) messages from
-      us related to your interaction with our business. Examples include:</p>
+      <p>If you check the optional SMS consent box on our contact form
+      (<a href="https://sde-tech.com/contact-us.html">https://sde-tech.com/contact-us.html</a>),
+      you may receive SMS (text) messages from us related to your interaction with our
+      business. The box is not pre-checked. Examples include:</p>
       <ul>
         <li>Responses to a service inquiry you submitted.</li>
         <li>Appointment scheduling, confirmations, and reminders.</li>
@@ -1161,9 +1164,12 @@ SMS_BODY = f"""
       </ul>
 
       <h2>Consent (opt-in)</h2>
-      <p><strong>By providing your phone number, you consent to receive SMS messages from
-      SDE Tech regarding your service inquiry, appointment scheduling, support ticket
-      updates, service announcements, or SDE Voice call alerts and help texts.</strong> Consent is not required as a condition of
+      <p><strong>You consent to receive SMS messages from SDE Tech regarding your service
+      inquiry, appointment scheduling, support ticket updates, service announcements, or
+      SDE Voice call alerts and help texts only by checking the optional SMS consent box
+      on our contact form at <a href="https://sde-tech.com/contact-us.html">https://sde-tech.com/contact-us.html</a>.
+      That box is not pre-checked, and submitting the form without checking it is not
+      consent.</strong> Consent is not required as a condition of
       purchasing any goods or services.</p>
 
       <h2>Opt-out</h2>
