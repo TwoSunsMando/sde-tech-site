@@ -9,6 +9,7 @@ developer convenience; the site itself has no build dependencies.
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 import textwrap
@@ -18,7 +19,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "public")
 
 LAST_UPDATED = "May 6, 2026"
-SMS_LAST_UPDATED = "October 5, 2026"   # SDE Voice Agents texts added (10DLC)
+SMS_LAST_UPDATED = "October 9, 2026"   # bump again if this merges on a later date
 COPYRIGHT_YEAR = 2026
 
 NAV_ITEMS = [
@@ -36,9 +37,17 @@ NAV_ITEMS = [
 ABOUT_KEYS = {"about-us"}
 
 
-def head(title: str, description: str, slug: str) -> str:
+def loc(path: str, absolute: bool) -> str:
+    """Prefix site paths with / when a page is served at an arbitrary URL (the 404)."""
+    if absolute and not path.startswith(("/", "http://", "https://", "mailto:", "tel:", "#")):
+        return "/" + path
+    return path
+
+
+def head(title: str, description: str, slug: str, extra_head: str = "", absolute: bool = False) -> str:
     canonical = f"https://sde-tech.com/{slug}.html" if slug != "index" else "https://sde-tech.com/"
     og_title = title if "sde tech" in title.lower() else f"{title} | SDE Tech"
+    extra = f"\n{extra_head}" if extra_head else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,30 +61,35 @@ def head(title: str, description: str, slug: str) -> str:
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:site_name" content="SDE Tech">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://sde-tech.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SDE Tech — IT, phones, websites, software and AI products · Sarasota">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{og_title}">
 <meta name="twitter:description" content="{description}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-<link rel="stylesheet" href="css/style.css">
+<meta name="twitter:image" content="https://sde-tech.com/images/og-image.png">
+<link rel="icon" href="{loc("favicon.ico", absolute)}" type="image/x-icon">
+<link rel="preload" href="{loc("fonts/inter-latin-400.woff2", absolute)}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{loc("fonts/inter-latin-600.woff2", absolute)}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{loc("css/style.css", absolute)}">{extra}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>"""
 
 
-def header(active_key: str) -> str:
+def header(active_key: str, absolute: bool = False) -> str:
     items = []
     for label, href, key in NAV_ITEMS:
         is_active = (key == active_key) or (key == "about" and active_key in ABOUT_KEYS)
         cls = ' class="active"' if is_active else ""
-        items.append(f'      <li><a href="{href}"{cls}>{label}</a></li>')
+        items.append(f'      <li><a href="{loc(href, absolute)}"{cls}>{label}</a></li>')
     nav_html = "\n".join(items)
     return f"""
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="index.html" aria-label="SDE Tech home">
-      <img src="images/sde_tech_logo_web.png" alt="SDE Tech">
+    <a class="brand" href="{loc("index.html", absolute)}" aria-label="SDE Tech home">
+      <img src="{loc("images/sde_tech_logo_web.png", absolute)}" alt="SDE Tech" width="154" height="40">
     </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
     <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
@@ -103,41 +117,42 @@ def page_title(title: str, breadcrumb: str | None = None) -> str:
 </section>"""
 
 
-FOOTER = f"""
+def footer(absolute: bool = False) -> str:
+    return f"""
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>SDE Tech</h4>
+        <h2 class="footer-heading">SDE Tech</h2>
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
         <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
       </div>
       <div>
-        <h4>Partners</h4>
+        <h2 class="footer-heading">Partners</h2>
         <div class="partner-badges">
           <a href="https://www.3cx.com/" target="_blank" rel="noopener" aria-label="3CX Certified Partner">
-            <img src="images/3CX_Certified_Partner-150x150.png" alt="3CX Certified Partner" width="80" height="80">
+            <img src="{loc("images/3CX_Certified_Partner-150x150.png", absolute)}" alt="3CX Certified Partner" width="80" height="80">
           </a>
           <a href="https://www.manateechamber.com/" target="_blank" rel="noopener" aria-label="Manatee Chamber of Commerce member">
-            <img src="images/MCC-150x150.png" alt="Manatee Chamber of Commerce member" width="80" height="80">
+            <img src="{loc("images/MCC-150x150.png", absolute)}" alt="Manatee Chamber of Commerce member" width="80" height="80">
           </a>
         </div>
       </div>
       <div>
-        <h4>Customer sign-in</h4>
+        <h2 class="footer-heading">Customer sign-in</h2>
         <ul>
-          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice Agents</a></li>
+          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice</a></li>
           <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
           <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
         </ul>
       </div>
       <div>
-        <h4>Compliance</h4>
+        <h2 class="footer-heading">Compliance</h2>
         <ul>
-          <li><a href="privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="terms-of-service.html">Terms of Service</a></li>
-          <li><a href="sms-messaging-policy.html">SMS Messaging Policy</a></li>
+          <li><a href="{loc("privacy-policy.html", absolute)}">Privacy Policy</a></li>
+          <li><a href="{loc("terms-of-service.html", absolute)}">Terms of Service</a></li>
+          <li><a href="{loc("sms-messaging-policy.html", absolute)}">SMS Messaging Policy</a></li>
         </ul>
       </div>
     </div>
@@ -154,16 +169,18 @@ FOOTER = f"""
 def render(slug: str, title: str, description: str, body: str,
            active_key: str | None = None,
            hero: bool = False, breadcrumb: str | None = None,
-           page_h1: str | None = None) -> str:
+           page_h1: str | None = None, extra_head: str = "",
+           absolute: bool = False) -> str:
     if active_key is None:
         active_key = slug
-    parts = [head(title, description, slug), header(active_key)]
+    parts = [head(title, description, slug, extra_head=extra_head, absolute=absolute),
+             header(active_key, absolute=absolute)]
     if not hero:
         parts.append(page_title(page_h1 or title, breadcrumb=breadcrumb))
     parts.append('<main id="main">')
     parts.append(body)
     parts.append("</main>")
-    parts.append(FOOTER)
+    parts.append(footer(absolute))
     return "\n".join(parts)
 
 
@@ -240,7 +257,7 @@ HOME_PRODUCTS = f"""
     <div class="tile-grid">
       <a class="tile" href="products.html#voice-agents">
         <div class="icon">{ICON_AI}</div>
-        <h3>SDE Voice Agents</h3>
+        <h3>SDE Voice</h3>
         <p>An AI receptionist that answers every call, transfers to your team and takes messages after hours.</p>
       </a>
       <a class="tile" href="products.html#sms">
@@ -274,7 +291,7 @@ PRODUCTS_BODY = f"""
   <div class="container">
     <div class="two-col">
       <div>
-        <p class="eyebrow">{ICON_AI} SDE Voice Agents</p>
+        <p class="eyebrow">{ICON_AI} SDE Voice</p>
         <h2 style="margin-top:0;">An AI receptionist that answers every call.</h2>
         <p>Day or night, every caller gets a friendly, natural voice that knows your business, instead of
         voicemail or a phone tree.</p>
@@ -292,7 +309,7 @@ PRODUCTS_BODY = f"""
       </div>
       <div class="product-card">
         <h3>Hear it for yourself</h3>
-        <p>SDE Tech's own phone lines are answered by SDE Voice Agents. Call and ask it anything about SDE Tech.</p>
+        <p>SDE Tech's own phone lines are answered by SDE Voice. Call and ask it anything about SDE Tech.</p>
         <p class="product-phone"><a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a></p>
         <h3>Good for</h3>
         <ul>
@@ -300,7 +317,7 @@ PRODUCTS_BODY = f"""
           <li>After-hours and weekend coverage</li>
           <li>Businesses already on a 3CX phone system</li>
         </ul>
-        <p class="signin">Already a customer? <a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">Sign in to SDE Voice Agents &rsaquo;</a></p>
+        <p class="signin">Already a customer? <a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">Sign in to SDE Voice &rsaquo;</a></p>
       </div>
     </div>
   </div>
@@ -473,7 +490,7 @@ CONTACT_BODY = """
                 <span class="checkbox-fine">
                   I agree to receive SMS messages from SDE Tech LLC about my inquiry and
                   my SDE Tech services &mdash; replies, appointment scheduling, support ticket
-                  updates, service announcements, and, for SDE Voice Agents clients, alerts
+                  updates, service announcements, and, for SDE Voice (formerly SDE Voice Agents) clients, alerts
                   when a caller leaves me a message and dashboard help I ask for. Message
                   frequency varies. Message and data rates may apply. Reply STOP to
                   unsubscribe or HELP for help. See our
@@ -491,7 +508,7 @@ CONTACT_BODY = """
               <option>VoIP Phones</option>
               <option>Website Services</option>
               <option>Software Development</option>
-              <option value="SDE Voice Agents" data-key="voice">SDE Voice Agents (AI receptionist)</option>
+              <option value="SDE Voice" data-key="voice">SDE Voice (AI receptionist)</option>
               <option value="SDE SMS" data-key="sms">SDE SMS (business texting)</option>
               <option value="SDE Web Fax" data-key="fax">SDE Web Fax</option>
               <option value="Products" data-key="products">Pricing for an SDE app</option>
@@ -611,7 +628,7 @@ IT_BODY = """
   <div class="container">
     <div class="col-grid">
       <div class="col">
-        <h3>Managed Network Services</h3>
+        <h2>Managed Network Services</h2>
         <ul>
           <li>Proactive monitoring and management of your computer system and network</li>
           <li>On-site and off-site backups</li>
@@ -624,7 +641,7 @@ IT_BODY = """
         </ul>
       </div>
       <div class="col">
-        <h3>On-site Premise Services</h3>
+        <h2>On-site Premise Services</h2>
         <ul>
           <li>Virus and malware removal and updates</li>
           <li>Computer troubleshooting, repair, and new setups</li>
@@ -638,7 +655,7 @@ IT_BODY = """
         </ul>
       </div>
       <div class="col">
-        <h3>Business Application Selection</h3>
+        <h2>Business Application Selection</h2>
         <ul>
           <li>iPhone, iPad, and Android applications</li>
           <li>Microsoft Office applications</li>
@@ -878,7 +895,7 @@ AI_AUTOMATION_BODY = """
       and ships practical AI tools that handle real work for real businesses &mdash; the
       same way we&rsquo;ve built production software for two decades. No hype, no science
       projects. Just automation that earns its keep.</p>
-      <p>Want to hear one? <a href="products.html#voice-agents">SDE Voice Agents</a>, our AI phone
+      <p>Want to hear one? <a href="products.html#voice-agents"><strong>SDE Voice</strong></a>, our AI
       receptionist, answers our own phone lines. Call <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a> to hear it.</p>
     </article>
   </div>
@@ -1136,17 +1153,17 @@ SMS_BODY = f"""
         <li>Support ticket updates and resolution notices.</li>
         <li>Service announcements relevant to your account (for example, scheduled
         maintenance windows for managed-service clients).</li>
-        <li>SDE Voice Agents call alerts: when a caller leaves a message with your
-        business&rsquo;s SDE Voice Agents phone agent, a text with the caller&rsquo;s name,
+        <li>SDE Voice call alerts (SDE Voice was formerly called SDE Voice Agents, and some texts may still say that name): when a caller leaves a message with your
+        business&rsquo;s SDE Voice AI receptionist, a text with the caller&rsquo;s name,
         callback number and reason.</li>
-        <li>SDE Voice Agents help: step-by-step dashboard instructions you ask for on a
+        <li>SDE Voice help: step-by-step dashboard instructions you ask for on a
         support call.</li>
       </ul>
 
       <h2>Consent (opt-in)</h2>
       <p><strong>By providing your phone number, you consent to receive SMS messages from
       SDE Tech regarding your service inquiry, appointment scheduling, support ticket
-      updates, service announcements, or SDE Voice Agents call alerts and help texts.</strong> Consent is not required as a condition of
+      updates, service announcements, or SDE Voice call alerts and help texts.</strong> Consent is not required as a condition of
       purchasing any goods or services.</p>
 
       <h2>Opt-out</h2>
@@ -1198,6 +1215,71 @@ SMS_BODY = f"""
 """
 
 # ---------------------------------------------------------------------------
+# LocalBusiness JSON-LD. Only facts already published on the site:
+# name, legal name, address, both public phone numbers, email, logo, and
+# Mon–Fri 8:00–5:00 ET office hours from the contact page. No geo, priceRange,
+# or social profiles (those are not on the site).
+# ---------------------------------------------------------------------------
+
+HOME_JSON_LD = (
+    '<script type="application/ld+json">\n'
+    + json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "SDE Tech",
+            "legalName": "SDE Tech LLC",
+            "url": "https://sde-tech.com/",
+            "email": "info@sde-tech.com",
+            "image": "https://sde-tech.com/images/sde_tech_logo_web.png",
+            "telephone": "866-371-2265",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2912 Bee Ridge Road",
+                "addressLocality": "Sarasota",
+                "addressRegion": "FL",
+                "postalCode": "34239",
+                "addressCountry": "US",
+            },
+            "contactPoint": [
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "866-371-2265",
+                    "contactType": "customer service",
+                },
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "(941) 363-1685",
+                    "contactType": "customer service",
+                },
+            ],
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "08:00",
+                "closes": "17:00",
+            },
+        },
+        indent=2,
+        ensure_ascii=False,
+    )
+    + "\n</script>"
+)
+
+NOT_FOUND_BODY = """
+<section class="section">
+  <div class="container">
+    <article class="prose">
+      <p>Sorry, that page isn&rsquo;t here. It may have moved, or the address may have been typed wrong.</p>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/products.html">Products</a></li>
+        <li><a href="/contact-us.html">Contact</a></li>
+      </ul>
+    </article>
+  </div>
+</section>
+"""
 
 PAGES = [
     {
@@ -1206,6 +1288,7 @@ PAGES = [
         "description": "SDE Tech is a Sarasota, Florida IT services company providing managed IT, 3CX VoIP phone systems, website services, and custom software development to small and mid-size businesses.",
         "active_key": "home",
         "hero": True,
+        "extra_head": HOME_JSON_LD,
         "body": HOME_HERO + HOME_TILES + HOME_PRODUCTS + HOME_ABOUT_TEASER + HOME_CTA,
     },
     {
@@ -1233,7 +1316,7 @@ PAGES = [
     {
         "slug": "voip-phones",
         "title": "VoIP Phones",
-        "description": "3CX-certified VoIP phone systems for businesses &mdash; better call quality, more features, and lower monthly cost than traditional phone lines.",
+        "description": "3CX VoIP phone systems for businesses, from a 3CX partner — better call quality, more features, and lower monthly cost than traditional phone lines.",
         "breadcrumb": "VoIP Phones",
         "body": VOIP_BODY,
     },
@@ -1261,9 +1344,9 @@ PAGES = [
     },
     {
         "slug": "products",
-        "title": "Products | SDE Voice Agents, SDE SMS, SDE Web Fax | SDE Tech",
+        "title": "Products | SDE Voice, SDE SMS, SDE Web Fax | SDE Tech",
         "page_h1": "Products",
-        "description": "Business apps built and supported by SDE Tech in Sarasota: SDE Voice Agents AI receptionist, SDE SMS business texting, and SDE Web Fax online faxing.",
+        "description": "Business apps built and supported by SDE Tech in Sarasota: SDE Voice AI receptionist, SDE SMS business texting, and SDE Web Fax online faxing.",
         "breadcrumb": "Products",
         "body": PRODUCTS_BODY,
     },
@@ -1313,6 +1396,28 @@ def write_sitemap():
         f.write(xml)
 
 
+def write_not_found():
+    html = render(
+        slug="404",
+        title="Page not found",
+        description="That page is not on the SDE Tech website.",
+        body=NOT_FOUND_BODY,
+        active_key="",
+        extra_head='<meta name="robots" content="noindex">',
+        absolute=True,
+    )
+    with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+    return len(html)
+
+
+def write_robots():
+    # Exact three directives from the approved change list.
+    text = "User-agent: *\nAllow: /\nSitemap: https://sde-tech.com/sitemap.xml\n"
+    with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
+        f.write(text)
+
+
 def build():
     os.makedirs(OUT, exist_ok=True)
     written = []
@@ -1326,13 +1431,16 @@ def build():
             hero=p.get("hero", False),
             breadcrumb=p.get("breadcrumb"),
             page_h1=p.get("page_h1"),
+            extra_head=p.get("extra_head", ""),
         )
         path = os.path.join(OUT, f"{p['slug']}.html")
         with open(path, "w", encoding="utf-8") as f:
             f.write(html)
         written.append((p["slug"], len(html)))
 
+    not_found_size = write_not_found()
     write_sitemap()
+    write_robots()
 
     # Word-count summary (visible text only).
     print(f"{'page':<26}{'bytes':>8}  words")
@@ -1345,7 +1453,8 @@ def build():
         text = re.sub(r"&[a-zA-Z]+;", " ", text)
         words = len(text.split())
         print(f"{slug:<26}{size:>8}  {words}")
-    print(f"\nWrote {len(written)} pages + sitemap.xml")
+    print(f"{'404':<26}{not_found_size:>8}")
+    print(f"\nWrote {len(written)} pages + 404.html + sitemap.xml + robots.txt")
 
 
 if __name__ == "__main__":

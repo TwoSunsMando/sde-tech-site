@@ -11,13 +11,62 @@
 <meta property="og:description" content="SDE Tech is a Sarasota, Florida IT services company providing managed IT, 3CX VoIP phone systems, website services, and custom software development to small and mid-size businesses.">
 <meta property="og:url" content="https://sde-tech.com/">
 <meta property="og:site_name" content="SDE Tech">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://sde-tech.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SDE Tech — IT, phones, websites, software and AI products · Sarasota">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SDE Tech &mdash; IT, Phones, Websites &amp; Software in Sarasota, FL">
 <meta name="twitter:description" content="SDE Tech is a Sarasota, Florida IT services company providing managed IT, 3CX VoIP phone systems, website services, and custom software development to small and mid-size businesses.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+<meta name="twitter:image" content="https://sde-tech.com/images/og-image.png">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="preload" href="fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "SDE Tech",
+  "legalName": "SDE Tech LLC",
+  "url": "https://sde-tech.com/",
+  "email": "info@sde-tech.com",
+  "image": "https://sde-tech.com/images/sde_tech_logo_web.png",
+  "telephone": "866-371-2265",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2912 Bee Ridge Road",
+    "addressLocality": "Sarasota",
+    "addressRegion": "FL",
+    "postalCode": "34239",
+    "addressCountry": "US"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "866-371-2265",
+      "contactType": "customer service"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "(941) 363-1685",
+      "contactType": "customer service"
+    }
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "opens": "08:00",
+    "closes": "17:00"
+  }
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -25,7 +74,7 @@
 <header class="site-header">
   <div class="container">
     <a class="brand" href="index.html" aria-label="SDE Tech home">
-      <img src="images/sde_tech_logo_web.png" alt="SDE Tech">
+      <img src="images/sde_tech_logo_web.png" alt="SDE Tech" width="154" height="40">
     </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
     <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
@@ -100,7 +149,7 @@
     <div class="tile-grid">
       <a class="tile" href="products.html#voice-agents">
         <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.7 4.8L18.5 9.5l-4.8 1.7L12 16l-1.7-4.8L5.5 9.5l4.8-1.7L12 3z"/><path d="M18.5 16l.9 2.6L22 19.5l-2.6.9L18.5 23l-.9-2.6L15 19.5l2.6-.9L18.5 16z"/></svg></div>
-        <h3>SDE Voice Agents</h3>
+        <h3>SDE Voice</h3>
         <p>An AI receptionist that answers every call, transfers to your team and takes messages after hours.</p>
       </a>
       <a class="tile" href="products.html#sms">
@@ -147,13 +196,13 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>SDE Tech</h4>
+        <h2 class="footer-heading">SDE Tech</h2>
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
         <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
       </div>
       <div>
-        <h4>Partners</h4>
+        <h2 class="footer-heading">Partners</h2>
         <div class="partner-badges">
           <a href="https://www.3cx.com/" target="_blank" rel="noopener" aria-label="3CX Certified Partner">
             <img src="images/3CX_Certified_Partner-150x150.png" alt="3CX Certified Partner" width="80" height="80">
@@ -164,15 +213,15 @@
         </div>
       </div>
       <div>
-        <h4>Customer sign-in</h4>
+        <h2 class="footer-heading">Customer sign-in</h2>
         <ul>
-          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice Agents</a></li>
+          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice</a></li>
           <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
           <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
         </ul>
       </div>
       <div>
-        <h4>Compliance</h4>
+        <h2 class="footer-heading">Compliance</h2>
         <ul>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>
           <li><a href="terms-of-service.html">Terms of Service</a></li>
