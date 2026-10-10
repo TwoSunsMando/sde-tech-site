@@ -547,7 +547,7 @@ form.contact-form .checkbox-fine {
 form.contact-form .checkbox-fine a { color: var(--blue); text-decoration: underline; }
 form.contact-form .checkbox-fine a:hover { text-decoration: none; }
 
-/* Inline submit-result banner shown after Formspree POST */
+/* Inline submit-result banner shown after the contact form is sent */
 form.contact-form .form-status {
   margin-top: 16px;
   padding: 0;

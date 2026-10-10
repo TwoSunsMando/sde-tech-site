@@ -67,8 +67,7 @@
         <p>Tell us what your business is dealing with and what you&rsquo;d like to change. We
         respond to inquiries within one business day.</p>
 
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvkzogpz" method="POST">
-          <input type="hidden" name="_subject" value="New inquiry from sde-tech.com">
+        <form id="contactForm" class="contact-form" action="https://voice-api.sde-tech.com/api/public/contact" method="POST">
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="cf-name">Your name</label>
@@ -158,23 +157,28 @@
 
               fetch(form.action, {
                 method: 'POST',
-                body: new FormData(form),
+                body: new URLSearchParams(new FormData(form)),
                 headers: { 'Accept': 'application/json' }
               })
                 .then(function (res) {
+                  return res.text().then(function (text) {
+                    var data = null;
+                    try { data = text ? JSON.parse(text) : null; } catch (err) { data = null; }
+                    return data;
+                  });
+                })
+                .then(function (data) {
                   btn.disabled = false;
                   btn.textContent = origBtnText;
-                  if (res.ok) {
+                  if (data && data.ok === true) {
                     status.className = 'form-status success';
                     status.textContent = "Thanks — we've got your message and will respond within one business day.";
                     form.reset();
                     return;
                   }
-                  return res.json().then(function (d) {
-                    status.className = 'form-status error';
-                    status.textContent = (d && d.errors && d.errors.map(function (err) { return err.message; }).join(', '))
-                      || 'Something went wrong. Please try again, or email info@sde-tech.com directly.';
-                  });
+                  status.className = 'form-status error';
+                  status.textContent = (data && typeof data.error === 'string' && data.error)
+                    || 'Something went wrong. Please try again, or email info@sde-tech.com directly.';
                 })
                 .catch(function () {
                   btn.disabled = false;
