@@ -1291,6 +1291,18 @@ NOT_FOUND_BODY = """
 </section>
 """
 
+# No-JavaScript contact posts land here. Kept out of PAGES so it stays out of the sitemap.
+THANK_YOU_BODY = """
+<section class="section">
+  <div class="container">
+    <article class="prose">
+      <p>Thanks, we got your message and will reply soon.</p>
+      <p><a href="index.html">Back home</a></p>
+    </article>
+  </div>
+</section>
+"""
+
 PAGES = [
     {
         "slug": "index",
@@ -1421,6 +1433,20 @@ def write_not_found():
     return len(html)
 
 
+def write_thank_you():
+    html = render(
+        slug="thank-you",
+        title="Thank you",
+        description="Thanks, we got your message and will reply soon.",
+        body=THANK_YOU_BODY,
+        active_key="",
+        extra_head='<meta name="robots" content="noindex">',
+    )
+    with open(os.path.join(OUT, "thank-you.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+    return len(html)
+
+
 def write_robots():
     # Exact three directives from the approved change list.
     text = "User-agent: *\nAllow: /\nSitemap: https://sde-tech.com/sitemap.xml\n"
@@ -1449,6 +1475,7 @@ def build():
         written.append((p["slug"], len(html)))
 
     not_found_size = write_not_found()
+    thank_you_size = write_thank_you()
     write_sitemap()
     write_robots()
 
@@ -1464,7 +1491,8 @@ def build():
         words = len(text.split())
         print(f"{slug:<26}{size:>8}  {words}")
     print(f"{'404':<26}{not_found_size:>8}")
-    print(f"\nWrote {len(written)} pages + 404.html + sitemap.xml + robots.txt")
+    print(f"{'thank-you':<26}{thank_you_size:>8}")
+    print(f"\nWrote {len(written)} pages + 404.html + thank-you.html + sitemap.xml + robots.txt")
 
 
 if __name__ == "__main__":
