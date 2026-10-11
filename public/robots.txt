@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sde-tech.com/sitemap.xml
