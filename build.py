@@ -74,6 +74,7 @@ def head(title: str, description: str, slug: str, extra_head: str = "", absolute
 <link rel="preload" href="{loc("fonts/inter-latin-400.woff2", absolute)}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{loc("fonts/inter-latin-600.woff2", absolute)}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{loc("css/style.css", absolute)}">{extra}
+<script defer src="https://cloud.umami.is/script.js" data-website-id="df3616c1-64f6-4208-bf42-225a822de249" data-domains="sde-tech.com,voice.sde-tech.com"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>"""
@@ -981,7 +982,7 @@ PRIVACY_BODY = f"""
         browser type, pages visited, timestamp) used for site reliability and security.</li>
       </ul>
       <p>We do not use third-party advertising trackers or behavioral retargeting cookies on
-      this website.</p>
+      this website. We use Umami, a cookieless analytics service, to count page visits.</p>
 
       <h2>2. How we use your information</h2>
       <p>We use the information you provide solely to:</p>
