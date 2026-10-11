@@ -11,12 +11,17 @@
 <meta property="og:description" content="Reach SDE Tech in Sarasota, Florida. Phone 866-371-2265, email info@sde-tech.com, or send a message through our contact form.">
 <meta property="og:url" content="https://sde-tech.com/contact-us.html">
 <meta property="og:site_name" content="SDE Tech">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://sde-tech.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SDE Tech — IT, phones, websites, software and AI products · Sarasota">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Contact SDE Tech">
 <meta name="twitter:description" content="Reach SDE Tech in Sarasota, Florida. Phone 866-371-2265, email info@sde-tech.com, or send a message through our contact form.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+<meta name="twitter:image" content="https://sde-tech.com/images/og-image.png">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="preload" href="fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,7 +30,7 @@
 <header class="site-header">
   <div class="container">
     <a class="brand" href="index.html" aria-label="SDE Tech home">
-      <img src="images/sde_tech_logo_web.png" alt="SDE Tech">
+      <img src="images/sde_tech_logo_web.png" alt="SDE Tech" width="154" height="40">
     </a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
     <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
@@ -89,7 +94,7 @@
                 <span class="checkbox-fine">
                   I agree to receive SMS messages from SDE Tech LLC about my inquiry and
                   my SDE Tech services &mdash; replies, appointment scheduling, support ticket
-                  updates, service announcements, and, for SDE Voice Agents clients, alerts
+                  updates, service announcements, and, for SDE Voice (formerly SDE Voice Agents) clients, alerts
                   when a caller leaves me a message and dashboard help I ask for. Message
                   frequency varies. Message and data rates may apply. Reply STOP to
                   unsubscribe or HELP for help. See our
@@ -107,7 +112,7 @@
               <option>VoIP Phones</option>
               <option>Website Services</option>
               <option>Software Development</option>
-              <option value="SDE Voice Agents" data-key="voice">SDE Voice Agents (AI receptionist)</option>
+              <option value="SDE Voice" data-key="voice">SDE Voice (AI receptionist)</option>
               <option value="SDE SMS" data-key="sms">SDE SMS (business texting)</option>
               <option value="SDE Web Fax" data-key="fax">SDE Web Fax</option>
               <option value="Products" data-key="products">Pricing for an SDE app</option>
@@ -212,16 +217,17 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>SDE Tech</h4>
+        <h2 class="footer-heading">SDE Tech</h2>
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
         <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
       </div>
       <div>
-        <h4>Partners</h4>
+        <h2 class="footer-heading">Partners</h2>
         <div class="partner-badges">
-          <a href="https://www.3cx.com/" target="_blank" rel="noopener" aria-label="3CX Certified Partner">
-            <img src="images/3CX_Certified_Partner-150x150.png" alt="3CX Certified Partner" width="80" height="80">
+          <!-- TODO: Replace images/partner-badge.png with the current partner logo from Dan's 3CX Partner Portal. The file on disk still shows the previous badge artwork. -->
+          <a href="https://www.3cx.com/" target="_blank" rel="noopener" aria-label="3CX Partner">
+            <img src="images/partner-badge.png" alt="3CX Partner" width="80" height="80">
           </a>
           <a href="https://www.manateechamber.com/" target="_blank" rel="noopener" aria-label="Manatee Chamber of Commerce member">
             <img src="images/MCC-150x150.png" alt="Manatee Chamber of Commerce member" width="80" height="80">
@@ -229,15 +235,15 @@
         </div>
       </div>
       <div>
-        <h4>Customer sign-in</h4>
+        <h2 class="footer-heading">Customer sign-in</h2>
         <ul>
-          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice Agents</a></li>
+          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice</a></li>
           <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
           <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
         </ul>
       </div>
       <div>
-        <h4>Compliance</h4>
+        <h2 class="footer-heading">Compliance</h2>
         <ul>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>
           <li><a href="terms-of-service.html">Terms of Service</a></li>
