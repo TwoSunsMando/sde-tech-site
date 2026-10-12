@@ -580,6 +580,12 @@ CONTACT_BODY = """
 
             if (consent) consent.addEventListener('change', syncPhoneRequirement);
             if (phone) {
+              phone.addEventListener('invalid', function (e) {
+                if (!(consent && consent.checked && phone.value.trim() === '')) return;
+                e.preventDefault();
+                flagPhoneError();
+                phone.focus();
+              });
               phone.addEventListener('input', function () {
                 if (phone.value.trim() !== '') flagPhoneError();
               });
