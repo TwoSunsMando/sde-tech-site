@@ -493,6 +493,19 @@ form.contact-form .help.direct-note { margin-top: 12px; }
 
 .contact-heading { margin-top: 0; }
 
+/* No-JS API redirect: nginx SSI fills this from ?error=. Hidden when the param is absent. */
+form.contact-form .form-error {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid #B91C1C;
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: #7F1010;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 /* Honeypot: kept out of view. The API drops the post when this is filled in. */
 form.contact-form .contact-honeypot { display: none; }
 

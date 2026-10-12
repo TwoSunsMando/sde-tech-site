@@ -69,6 +69,37 @@
         respond to inquiries within one business day.</p>
 
         <form id="contactForm" class="contact-form" action="https://voice-api.sde-tech.com/api/public/contact" method="POST">
+          <!--# if expr="$arg_error = Enter+a+phone+number+to+agree+to+texts." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Enter a phone number to agree to texts.</p>
+          <!--# elif expr="$arg_error = Enter+your+name." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Enter your name.</p>
+          <!--# elif expr="$arg_error = Enter+your+email+address." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Enter your email address.</p>
+          <!--# elif expr="$arg_error = Enter+a+valid+email+address." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Enter a valid email address.</p>
+          <!--# elif expr="$arg_error = Enter+a+message." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Enter a message.</p>
+          <!--# elif expr="$arg_error = Name+is+too+long." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Name is too long.</p>
+          <!--# elif expr="$arg_error = Email+is+too+long." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Email is too long.</p>
+          <!--# elif expr="$arg_error = Phone+is+too+long." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Phone is too long.</p>
+          <!--# elif expr="$arg_error = Company+is+too+long." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Company is too long.</p>
+          <!--# elif expr="$arg_error = Topic+is+too+long." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Topic is too long.</p>
+          <!--# elif expr="$arg_error = Message+is+too+long." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Message is too long.</p>
+          <!--# elif expr="$arg_error = That+message+is+too+large." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>That message is too large.</p>
+          <!--# elif expr="$arg_error = Too+many+messages+from+this+connection.+Please+try+again+later." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Too many messages from this connection. Please try again later.</p>
+          <!--# elif expr="$arg_error = Send+the+form+as+JSON+or+as+form+fields." -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>Send the form as JSON or as form fields.</p>
+          <!--# elif expr="$arg_error" -->
+          <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>We couldn&rsquo;t send your message. Please check the form and try again.</p>
+          <!--# endif -->
           <input type="text" name="_gotcha" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="cf-name">Your name</label>
