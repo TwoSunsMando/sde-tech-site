@@ -74,6 +74,7 @@ def head(title: str, description: str, slug: str, extra_head: str = "", absolute
 <link rel="preload" href="{loc("fonts/inter-latin-400.woff2", absolute)}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{loc("fonts/inter-latin-600.woff2", absolute)}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{loc("css/style.css", absolute)}">{extra}
+<script>document.documentElement.classList.add("js");</script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="df3616c1-64f6-4208-bf42-225a822de249" data-domains="sde-tech.com,voice.sde-tech.com"></script>
 </head>
 <body>
@@ -93,17 +94,39 @@ def header(active_key: str, absolute: bool = False) -> str:
     <a class="brand" href="{loc("index.html", absolute)}" aria-label="SDE Tech home">
       <img src="{loc("images/sde_tech_logo_web.png", absolute)}" alt="SDE Tech" width="154" height="40">
     </a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </label>
-    <nav class="primary-nav" aria-label="Primary">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
       <ul>
 {nav_html}
       </ul>
     </nav>
   </div>
-</header>"""
+</header>
+<script>
+(function () {{
+  var btn = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("primary-nav");
+  if (!btn || !nav) return;
+  function setOpen(open) {{
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    nav.classList.toggle("is-open", open);
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }}
+  btn.addEventListener("click", function () {{
+    setOpen(btn.getAttribute("aria-expanded") !== "true");
+  }});
+  document.addEventListener("keydown", function (e) {{
+    if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {{
+      setOpen(false);
+      btn.focus();
+    }}
+  }});
+}})();
+</script>"""
 
 
 def page_title(title: str, breadcrumb: str | None = None) -> str:
@@ -127,7 +150,7 @@ def footer(absolute: bool = False) -> str:
       <div>
         <h2 class="footer-heading">SDE Tech</h2>
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
-        <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a></p>
+        <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
       </div>
       <div>
@@ -178,9 +201,9 @@ def render(slug: str, title: str, description: str, body: str,
         active_key = slug
     parts = [head(title, description, slug, extra_head=extra_head, absolute=absolute),
              header(active_key, absolute=absolute)]
+    parts.append('<main id="main">')
     if not hero:
         parts.append(page_title(page_h1 or title, breadcrumb=breadcrumb))
-    parts.append('<main id="main">')
     parts.append(body)
     parts.append("</main>")
     parts.append(footer(absolute))
@@ -199,8 +222,10 @@ HOME_HERO = """
     turn to when they want their technology handled by people they can actually reach. No
     outsourced help desks. No vendor sprawl. Just the core technology that keeps your business
     running, all under one roof.</p>
-    <a class="btn" href="contact-us.html">Talk to our team</a>
-    <a class="btn btn-outline" href="about-us.html" style="margin-left:12px;">About SDE Tech</a>
+    <div class="hero-actions">
+      <a class="btn btn-light" href="contact-us.html">Talk to our team</a>
+      <a class="btn btn-outline-light" href="about-us.html">About SDE Tech</a>
+    </div>
   </div>
 </section>
 """
@@ -218,8 +243,8 @@ ICON_FAX = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke
 HOME_TILES = f"""
 <section class="section">
   <div class="container">
-    <h2 style="text-align:center;">What we do</h2>
-    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto;">Five practice areas, one local team. Pick what you need today, expand as your business grows.</p>
+    <h2 class="center">What we do</h2>
+    <p class="muted center-block flat">Five practice areas, one local team. Pick what you need today, expand as your business grows.</p>
     <div class="tile-grid">
       <a class="tile" href="it-services.html">
         <div class="icon">{ICON_IT}</div>
@@ -255,8 +280,8 @@ HOME_TILES = f"""
 HOME_PRODUCTS = f"""
 <section class="section alt">
   <div class="container">
-    <h2 style="text-align:center;">Apps from SDE Tech</h2>
-    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto;">Business apps we build, run and support ourselves. Already a customer? Add one to your account.</p>
+    <h2 class="center">Apps from SDE Tech</h2>
+    <p class="muted center-block flat">Business apps we build, run and support ourselves. Already a customer? Add one to your account.</p>
     <div class="tile-grid">
       <a class="tile" href="products.html#voice-agents">
         <div class="icon">{ICON_AI}</div>
@@ -295,7 +320,7 @@ PRODUCTS_BODY = f"""
     <div class="two-col">
       <div>
         <p class="eyebrow">{ICON_AI} SDE Voice</p>
-        <h2 style="margin-top:0;">An AI receptionist that answers every call.</h2>
+        <h2 class="heading-flush">An AI receptionist that answers every call.</h2>
         <p>Day or night, every caller gets a friendly, natural voice that knows your business, instead of
         voicemail or a phone tree.</p>
         <ul class="feature-list">
@@ -307,13 +332,13 @@ PRODUCTS_BODY = f"""
         </ul>
         <div class="product-actions">
           <a class="btn btn-primary" href="https://voiceai.sde-tech.com/signup">Get your AI receptionist</a>
-          <a href="contact-us.html?topic=voice#contactForm">Ask for pricing</a>
+          <a class="btn btn-secondary" href="contact-us.html?topic=voice#contactForm">Ask for pricing</a>
         </div>
       </div>
       <div class="product-card">
         <h3>Hear it for yourself</h3>
         <p>SDE Tech's own phone lines are answered by SDE Voice. Call and ask it anything about SDE Tech.</p>
-        <p class="product-phone"><a href="tel:+19412291384" style="white-space:nowrap">(941) 229-1384</a></p>
+        <p class="product-phone"><a href="tel:+19412291384" class="nowrap">(941) 229-1384</a></p>
         <h3>Good for</h3>
         <ul>
           <li>Offices that miss calls when everyone is busy</li>
@@ -331,7 +356,7 @@ PRODUCTS_BODY = f"""
     <div class="two-col">
       <div>
         <p class="eyebrow">{ICON_SMS} SDE SMS</p>
-        <h2 style="margin-top:0;">Business texting for your whole team.</h2>
+        <h2 class="heading-flush">Business texting for your whole team.</h2>
         <p>Text customers from your company&rsquo;s own numbers, from any browser or phone, with your
         team working the same conversations.</p>
         <ul class="feature-list">
@@ -344,7 +369,7 @@ PRODUCTS_BODY = f"""
         </ul>
         <p class="muted small">Text blasts go only to people who have agreed to receive texts from your business.</p>
         <div class="product-actions">
-          <a class="btn btn-primary" href="contact-us.html?topic=sms#contactForm">Ask for pricing</a>
+          <a class="btn btn-secondary" href="contact-us.html?topic=sms#contactForm">Ask for pricing</a>
         </div>
       </div>
       <div class="product-card">
@@ -365,7 +390,7 @@ PRODUCTS_BODY = f"""
     <div class="two-col">
       <div>
         <p class="eyebrow">{ICON_FAX} SDE Web Fax</p>
-        <h2 style="margin-top:0;">Send faxes from your browser.</h2>
+        <h2 class="heading-flush">Send faxes from your browser.</h2>
         <p>No fax machine, no phone line, no paper jams. Upload the document, pick the recipient, send.</p>
         <ul class="feature-list">
           <li>Drag and drop documents to fax to any fax number</li>
@@ -375,7 +400,7 @@ PRODUCTS_BODY = f"""
           <li>Multiple users under one company account</li>
         </ul>
         <div class="product-actions">
-          <a class="btn btn-primary" href="contact-us.html?topic=fax#contactForm">Ask for pricing</a>
+          <a class="btn btn-secondary" href="contact-us.html?topic=fax#contactForm">Ask for pricing</a>
         </div>
       </div>
       <div class="product-card">
@@ -395,7 +420,7 @@ PRODUCTS_BODY = f"""
   <div class="container">
     <h2>Want one of these on your account?</h2>
     <p>Tell us which app and roughly how your team would use it. We&rsquo;ll send pricing and get you set up.</p>
-    <p style="margin-top:24px;"><a class="btn" href="contact-us.html?topic=products#contactForm">Ask for pricing</a></p>
+    <p class="cta-follow"><a class="btn btn-light" href="contact-us.html?topic=products#contactForm">Ask for pricing</a></p>
   </div>
 </section>
 """
@@ -410,7 +435,7 @@ HOME_ABOUT_TEASER = """
         <p><a href="about-us.html">Read more about SDE Tech &rsaquo;</a></p>
       </div>
       <div class="teaser-card">
-        <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Why local matters.</p>
+        <h3>Why local matters.</h3>
         <p>When something breaks, you&rsquo;re not opening a ticket with someone three time zones away. You&rsquo;re calling a Sarasota number and getting a Sarasota answer.</p>
       </div>
     </div>
@@ -423,7 +448,7 @@ HOME_CTA = """
   <div class="container">
     <h2>Ready to talk?</h2>
     <p>Tell us what your business runs on today. We&rsquo;ll tell you what we&rsquo;d change, what we&rsquo;d leave alone, and what it would cost.</p>
-    <p style="margin-top:24px;"><a class="btn" href="contact-us.html">Contact us today</a></p>
+    <p class="cta-follow"><a class="btn btn-light" href="contact-us.html">Contact us today</a></p>
   </div>
 </section>
 """
@@ -462,7 +487,7 @@ CONTACT_BODY = """
   <div class="container">
     <div class="contact-grid">
       <div>
-        <h2 class="contact-heading">Get in touch</h2>
+        <h2 class="heading-flush">Get in touch</h2>
         <p>Tell us what your business is dealing with and what you&rsquo;d like to change. We
         respond to inquiries within one business day.</p>
 
@@ -682,7 +707,7 @@ CONTACT_BODY = """
           <p class="label">Office</p>
           <p class="value">2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
           <p class="label">Phone</p>
-          <p class="value"><a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a><br><small>Our phone lines are answered by SDE Tech's own AI receptionist, the same one we set up for businesses.</small></p>
+          <p class="value"><a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a><br><small>Our phone lines are answered by SDE Tech's own AI receptionist, the same one we set up for businesses.</small></p>
           <p class="label">Email</p>
           <p class="value"><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
           <p class="label">Hours</p>
@@ -782,7 +807,7 @@ IT_BODY = """
   <div class="container">
     <h2>Want a second opinion on your IT setup?</h2>
     <p>We&rsquo;ll walk through what you have, where it&rsquo;s costing you, and what we&rsquo;d do differently. No pressure, no commitment.</p>
-    <p style="margin-top:24px;"><a class="btn" href="contact-us.html">Schedule a consultation</a></p>
+    <p class="cta-follow"><a class="btn btn-light" href="contact-us.html">Schedule a consultation</a></p>
   </div>
 </section>
 """
@@ -807,9 +832,9 @@ VOIP_BODY = """
 
 <section class="section alt">
   <div class="container">
-    <h2 style="text-align:center;">Connect.</h2>
-    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto 16px;">Reach the right people, the first time.</p>
-    <ul style="max-width:640px;margin:0 auto;">
+    <h2 class="center">Connect.</h2>
+    <p class="muted center-block">Reach the right people, the first time.</p>
+    <ul class="narrow">
       <li>Queues for sales and customer service</li>
       <li>Intercom and paging options</li>
       <li>Custom ring groups and timing</li>
@@ -820,9 +845,9 @@ VOIP_BODY = """
 
 <section class="section">
   <div class="container">
-    <h2 style="text-align:center;">Communicate.</h2>
-    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto 16px;">See what&rsquo;s happening across your team at a glance.</p>
-    <ul style="max-width:640px;margin:0 auto;">
+    <h2 class="center">Communicate.</h2>
+    <p class="muted center-block">See what&rsquo;s happening across your team at a glance.</p>
+    <ul class="narrow">
       <li>Co-worker availability at a glance</li>
       <li>Instant messaging via dashboard</li>
       <li>Screen pops with caller information</li>
@@ -833,9 +858,9 @@ VOIP_BODY = """
 
 <section class="section alt">
   <div class="container">
-    <h2 style="text-align:center;">Collaborate.</h2>
-    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto 16px;">Connect branch offices and remote staff like one team.</p>
-    <ul style="max-width:640px;margin:0 auto;">
+    <h2 class="center">Collaborate.</h2>
+    <p class="muted center-block">Connect branch offices and remote staff like one team.</p>
+    <ul class="narrow">
       <li>Seamless remote capabilities</li>
       <li>Connecting branch locations as one</li>
       <li>Video conferencing options</li>
@@ -846,9 +871,9 @@ VOIP_BODY = """
 
 <section class="section">
   <div class="container">
-    <h2 style="text-align:center;">Cultivate.</h2>
-    <p class="muted" style="text-align:center;max-width:640px;margin:0 auto 16px;">Coach your team using the calls they&rsquo;re actually making.</p>
-    <ul style="max-width:640px;margin:0 auto;">
+    <h2 class="center">Cultivate.</h2>
+    <p class="muted center-block">Coach your team using the calls they&rsquo;re actually making.</p>
+    <ul class="narrow">
       <li>Variety of training tools</li>
       <li>Call recording for training access</li>
       <li>Whisper, listen, and barge options</li>
@@ -861,7 +886,7 @@ VOIP_BODY = """
   <div class="container">
     <h2>Ready to retire your old phone bill?</h2>
     <p>We&rsquo;ll quote a 3CX phone system sized for your team and walk you through what it would replace.</p>
-    <p style="margin-top:24px;"><a class="btn" href="contact-us.html">Get a VoIP quote</a></p>
+    <p class="cta-follow"><a class="btn btn-light" href="contact-us.html">Get a VoIP quote</a></p>
   </div>
 </section>
 """
@@ -885,8 +910,8 @@ WEB_BODY = """
 
 <section class="section alt">
   <div class="container">
-    <h2 style="text-align:center;margin-bottom:8px;">Aspects of our website design and development</h2>
-    <div class="col-grid" style="grid-template-columns:repeat(2,1fr);max-width:880px;margin:32px auto 0;">
+    <h2 class="center heading-snug">Aspects of our website design and development</h2>
+    <div class="col-grid two">
       <div class="col">
         <h3>Domain / Host</h3>
         <p>You own your domains &mdash; we&rsquo;ll help configure them. We can also host your
@@ -917,7 +942,7 @@ WEB_BODY = """
   <div class="container">
     <h2>Need a website you&rsquo;re not embarrassed to share?</h2>
     <p>Send us your current site (or what you have so far). We&rsquo;ll tell you what&rsquo;s working, what&rsquo;s costing you customers, and what we&rsquo;d build instead.</p>
-    <p style="margin-top:24px;"><a class="btn" href="contact-us.html">Start a website project</a></p>
+    <p class="cta-follow"><a class="btn btn-light" href="contact-us.html">Start a website project</a></p>
   </div>
 </section>
 """
@@ -928,7 +953,7 @@ SOFTWARE_BODY = """
 <section class="section">
   <div class="container">
     <article class="prose">
-      <h2 style="margin-top:0;">Custom software</h2>
+      <h2 class="heading-flush">Custom software</h2>
       <p>Looking for an edge over your competition or a more efficient way to run your
       business? The answer is custom software. Why use something that was produced for the
       masses when you can have something that is tailored specifically to your company and
@@ -942,7 +967,7 @@ SOFTWARE_BODY = """
 
 <section class="section alt">
   <div class="container">
-    <h2 style="text-align:center;margin-top:0;">How it works</h2>
+    <h2 class="center heading-flush">How it works</h2>
     <div class="steps">
       <div class="step">
         <span class="step-num">Step 1</span>
@@ -973,7 +998,7 @@ SOFTWARE_BODY = """
   <div class="container">
     <h2>Got a process that no off-the-shelf tool quite fits?</h2>
     <p>That&rsquo;s the conversation we want to have. Tell us how your business actually runs and we&rsquo;ll sketch what a custom system would look like.</p>
-    <p style="margin-top:24px;"><a class="btn" href="contact-us.html">Discuss a software project</a></p>
+    <p class="cta-follow"><a class="btn btn-light" href="contact-us.html">Discuss a software project</a></p>
   </div>
 </section>
 """
@@ -989,15 +1014,15 @@ AI_AUTOMATION_BODY = """
       same way we&rsquo;ve built production software for two decades. No hype, no science
       projects. Just automation that earns its keep.</p>
       <p>Want to hear one? <a href="products.html#voice-agents"><strong>SDE Voice</strong></a>, our AI
-      receptionist, answers our own phone lines. Call <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a> to hear it.</p>
+      receptionist, answers our own phone lines. Call <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a> to hear it.</p>
     </article>
   </div>
 </section>
 
 <section class="section alt">
   <div class="container">
-    <h2 style="text-align:center;margin-top:0;">What we build</h2>
-    <div class="col-grid" style="grid-template-columns:repeat(2,1fr);max-width:880px;margin:32px auto 0;">
+    <h2 class="center heading-flush">What we build</h2>
+    <div class="col-grid two">
       <div class="col">
         <h3>Customer messaging assistants</h3>
         <p>AI that answers, qualifies, and books over text and web chat, so leads don&rsquo;t slip through the cracks.</p>
@@ -1040,7 +1065,7 @@ AI_AUTOMATION_BODY = """
   <div class="container">
     <h2>Curious where AI could help?</h2>
     <p>Tell us what your business runs on today. We&rsquo;ll tell you where AI would make a real difference &mdash; and where it wouldn&rsquo;t.</p>
-    <p style="margin-top:24px;"><a class="btn" href="contact-us.html">Contact us today</a></p>
+    <p class="cta-follow"><a class="btn btn-light" href="contact-us.html">Contact us today</a></p>
   </div>
 </section>
 """
@@ -1232,7 +1257,7 @@ SMS_BODY = f"""
       <!-- Set to actual deploy date at merge. -->
       <p class="updated">Last updated: {SMS_LAST_UPDATED}</p>
 
-      <h2 style="margin-top:0;">About SDE Tech</h2>
+      <h2 class="heading-flush">About SDE Tech</h2>
       <p>SDE Tech LLC is an IT consulting and services company based in Sarasota, Florida.
       We provide managed IT services, VoIP phone systems, website services, and custom
       software development to business clients.</p>

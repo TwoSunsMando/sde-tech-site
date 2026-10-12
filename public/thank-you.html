@@ -24,6 +24,7 @@
 <link rel="preload" href="fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <meta name="robots" content="noindex">
+<script>document.documentElement.classList.add("js");</script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="df3616c1-64f6-4208-bf42-225a822de249" data-domains="sde-tech.com,voice.sde-tech.com"></script>
 </head>
 <body>
@@ -34,11 +35,12 @@
     <a class="brand" href="index.html" aria-label="SDE Tech home">
       <img src="images/sde_tech_logo_web.png" alt="SDE Tech" width="154" height="40">
     </a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </label>
-    <nav class="primary-nav" aria-label="Primary">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
       <ul>
       <li><a href="it-services.html">IT Services</a></li>
       <li><a href="voip-phones.html">VoIP Phones</a></li>
@@ -52,6 +54,28 @@
     </nav>
   </div>
 </header>
+<script>
+(function () {
+  var btn = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("primary-nav");
+  if (!btn || !nav) return;
+  function setOpen(open) {
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    nav.classList.toggle("is-open", open);
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  btn.addEventListener("click", function () {
+    setOpen(btn.getAttribute("aria-expanded") !== "true");
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+      setOpen(false);
+      btn.focus();
+    }
+  });
+})();
+</script>
+<main id="main">
 
 <section class="page-title">
   <div class="container">
@@ -59,7 +83,6 @@
     
   </div>
 </section>
-<main id="main">
 
 <section class="section">
   <div class="container">
@@ -78,7 +101,7 @@
       <div>
         <h2 class="footer-heading">SDE Tech</h2>
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
-        <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" style="white-space:nowrap">(941) 363-1685</a></p>
+        <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
       </div>
       <div>
