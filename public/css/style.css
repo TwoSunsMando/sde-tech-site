@@ -498,7 +498,7 @@ form.contact-form .contact-honeypot { display: none; }
 
 form.contact-form .field.is-required #cf-phone-requirement {
   color: #7F1010;
-  font-weight: 700;
+  font-weight: 600;
 }
 form.contact-form .field-error {
   margin: 6px 0 0;
@@ -510,7 +510,6 @@ form.contact-form .field-error {
 form.contact-form .field-error[hidden] { display: none; }
 form.contact-form input[aria-invalid="true"] {
   border-color: #B91C1C;
-  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.12);
 }
 
 /* SMS opt-in checkbox — CTIA/TCPA compliant explicit consent.
@@ -556,7 +555,7 @@ form.contact-form .checkbox-label input[type="checkbox"] {
 }
 form.contact-form .checkbox-title {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--slate-dark);
   line-height: 1.3;
 }

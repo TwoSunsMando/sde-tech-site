@@ -482,8 +482,8 @@ CONTACT_BODY = """
           </div>
           <div class="field" id="cf-phone-field">
             <label for="cf-phone">Phone <span id="cf-phone-requirement">(optional)</span></label>
-            <input type="tel" id="cf-phone" name="phone" aria-errormessage="cf-phone-error">
-            <p id="cf-phone-error" class="field-error" role="alert" hidden>Enter a phone number to receive texts.</p>
+            <input type="tel" id="cf-phone" name="phone" aria-describedby="cf-phone-error">
+            <p id="cf-phone-error" class="field-error" hidden>Enter a phone number to receive texts.</p>
           </div>
           <div class="field checkbox-field">
             <div class="checkbox-card">
