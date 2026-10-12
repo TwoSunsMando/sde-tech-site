@@ -168,7 +168,7 @@ def footer(absolute: bool = False) -> str:
       <div>
         <h2 class="footer-heading">Customer sign-in</h2>
         <ul>
-          <li><a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">SDE Voice</a></li>
+          <li><a href="https://voiceai.sde-tech.com/login" target="_blank" rel="noopener">SDE Voice</a></li>
           <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
           <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
         </ul>
@@ -331,7 +331,7 @@ PRODUCTS_BODY = f"""
           <li>Change the greeting, hours, answers and who gets which calls from an online dashboard</li>
         </ul>
         <div class="product-actions">
-          <a class="btn btn-primary" href="https://voiceai.sde-tech.com/signup">Get your AI receptionist</a>
+          <a class="btn btn-primary" href="https://voiceai.sde-tech.com/signup">Request SDE Voice</a>
           <a class="btn btn-secondary" href="contact-us.html?topic=voice#contactForm">Ask for pricing</a>
         </div>
       </div>
@@ -345,7 +345,7 @@ PRODUCTS_BODY = f"""
           <li>After-hours and weekend coverage</li>
           <li>Businesses already on a 3CX phone system</li>
         </ul>
-        <p class="signin">Already a customer? <a href="https://voiceai.sde-tech.com" target="_blank" rel="noopener">Sign in to SDE Voice &rsaquo;</a></p>
+        <p class="signin">Already a customer? <a href="https://voiceai.sde-tech.com/login" target="_blank" rel="noopener">Sign in to SDE Voice &rsaquo;</a></p>
       </div>
     </div>
   </div>

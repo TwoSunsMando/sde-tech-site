@@ -192,14 +192,14 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
   .primary-nav ul { gap: 14px; }
 }
 
-/* Desktop nav from 961px. 14px type still wraps the longer labels in this band. */
-@media (min-width: 961px) and (max-width: 1040px) {
-  .primary-nav a { font-size: 0.8125rem; white-space: nowrap; }
+/* Desktop nav from 960px. Smaller type keeps the eight labels on one line through 1040px. */
+@media (min-width: 960px) and (max-width: 1040px) {
+  .primary-nav a { font-size: var(--fs-xs); white-space: nowrap; }
   .primary-nav ul { gap: 10px; }
 }
 
 /* Mobile nav. The button is hidden on wide screens. Without JS the links stay in the page. */
-@media (max-width: 960px) {
+@media (max-width: 959.98px) {
   .site-header .container { flex-wrap: wrap; }
   html.js .nav-toggle { display: inline-flex; }
   .primary-nav { flex: 1 0 100%; }
@@ -854,4 +854,5 @@ iframe.map {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .tile:hover { transform: none; }
 }
