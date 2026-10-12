@@ -1122,8 +1122,8 @@ PRIVACY_BODY = f"""
       <h2>4. Google Calendar data (SDE Voice)</h2>
       <h3>What we access</h3>
       <p>When a client connects Google Calendar to SDE Voice, we access availability
-      (free/busy) and the events SDE Voice creates or updates for bookings, through the
-      Google Calendar scopes calendar.events and calendar.freebusy.</p>
+      (free/busy) and the events SDE Voice creates or updates for bookings. The only
+      scopes we request are calendar.events and calendar.freebusy.</p>
 
       <h3>How it&rsquo;s used</h3>
       <p>We use this information only to check availability and to book, update, or cancel
