@@ -18,7 +18,7 @@ from datetime import date
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "public")
 
-LAST_UPDATED = "May 6, 2026"
+LAST_UPDATED = "October 12, 2026"
 # Privacy policy only. Terms of Service keeps LAST_UPDATED.
 PRIVACY_LAST_UPDATED = "October 12, 2026"
 # Set to actual deploy date at merge.
@@ -1216,7 +1216,9 @@ TOS_BODY = f"""
       <h2>1. About SDE Tech</h2>
       <p>SDE Tech LLC is a Florida limited liability company providing IT consulting,
       managed network services, VoIP phone systems, website services, and custom software
-      development to business clients.</p>
+      development to business clients. These Terms also cover SDE Voice, SDE Tech&rsquo;s
+      AI receptionist service at <a href="https://voice.sde-tech.com">voice.sde-tech.com</a>
+      and <a href="https://voiceai.sde-tech.com">voiceai.sde-tech.com</a>.</p>
 
       <h2>2. Use of the Site</h2>
       <p>You may use the Site for lawful, informational purposes. You agree not to:</p>
