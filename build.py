@@ -224,7 +224,7 @@ HOME_HERO = """
     running, all under one roof.</p>
     <div class="hero-actions">
       <a class="btn btn-light" href="contact-us.html">Talk to our team</a>
-      <a class="btn btn-outline" href="about-us.html">About SDE Tech</a>
+      <a class="btn btn-outline-light" href="about-us.html">About SDE Tech</a>
     </div>
   </div>
 </section>
@@ -332,7 +332,7 @@ PRODUCTS_BODY = f"""
         </ul>
         <div class="product-actions">
           <a class="btn btn-primary" href="https://voiceai.sde-tech.com/signup">Get your AI receptionist</a>
-          <a href="contact-us.html?topic=voice#contactForm">Ask for pricing</a>
+          <a class="btn btn-secondary" href="contact-us.html?topic=voice#contactForm">Ask for pricing</a>
         </div>
       </div>
       <div class="product-card">
@@ -369,7 +369,7 @@ PRODUCTS_BODY = f"""
         </ul>
         <p class="muted small">Text blasts go only to people who have agreed to receive texts from your business.</p>
         <div class="product-actions">
-          <a class="btn btn-primary" href="contact-us.html?topic=sms#contactForm">Ask for pricing</a>
+          <a class="btn btn-secondary" href="contact-us.html?topic=sms#contactForm">Ask for pricing</a>
         </div>
       </div>
       <div class="product-card">
@@ -400,7 +400,7 @@ PRODUCTS_BODY = f"""
           <li>Multiple users under one company account</li>
         </ul>
         <div class="product-actions">
-          <a class="btn btn-primary" href="contact-us.html?topic=fax#contactForm">Ask for pricing</a>
+          <a class="btn btn-secondary" href="contact-us.html?topic=fax#contactForm">Ask for pricing</a>
         </div>
       </div>
       <div class="product-card">
