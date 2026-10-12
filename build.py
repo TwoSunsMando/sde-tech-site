@@ -19,6 +19,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "public")
 
 LAST_UPDATED = "May 6, 2026"
+# Privacy policy only. Terms of Service keeps LAST_UPDATED.
+PRIVACY_LAST_UPDATED = "October 12, 2026"
 # Set to actual deploy date at merge.
 SMS_LAST_UPDATED = "October 9, 2026"
 COPYRIGHT_YEAR = 2026
@@ -1078,7 +1080,7 @@ PRIVACY_BODY = f"""
 <section class="legal">
   <div class="container">
     <article>
-      <p class="updated">Last updated: {LAST_UPDATED}</p>
+      <p class="updated">Last updated: {PRIVACY_LAST_UPDATED}</p>
 
       <p>This Privacy Policy describes how SDE Tech LLC (&ldquo;SDE Tech,&rdquo;
       &ldquo;we,&rdquo; or &ldquo;us&rdquo;) collects, uses, and protects information you
@@ -1117,7 +1119,46 @@ PRIVACY_BODY = f"""
       <a href="sms-messaging-policy.html">SMS Messaging Policy</a> for opt-in, opt-out, and
       message-frequency details.</p>
 
-      <h2>4. How we share your information</h2>
+      <h2>4. Google Calendar data (SDE Voice)</h2>
+      <h3>What we access</h3>
+      <p>When a client connects Google Calendar to SDE Voice, we access availability
+      (free/busy) and the events SDE Voice creates or updates for bookings. The only
+      scopes we request are calendar.events and calendar.freebusy.</p>
+
+      <h3>How it&rsquo;s used</h3>
+      <p>We use this information only to check availability and to book, update, or cancel
+      appointments the client&rsquo;s callers request, and to show those bookings in the
+      client&rsquo;s dashboard.</p>
+
+      <h3>Storage</h3>
+      <p>OAuth tokens are encrypted at rest and retained until the client disconnects
+      Google Calendar, after which they are deleted. Event details we keep are limited to
+      what is needed for the booking record.</p>
+
+      <h3>Sharing</h3>
+      <p>We do not sell Google Calendar data, we do not use it for advertising, and we do
+      not share it except as needed to provide the service, to comply with law, or with
+      consent.</p>
+
+      <h3>How to revoke access</h3>
+      <p>Disconnect Google Calendar in the SDE Voice dashboard, or revoke access at
+      <a href="https://myaccount.google.com/permissions">https://myaccount.google.com/permissions</a>.
+      Deletion requests go to <a href="mailto:support@sde-tech.com">support@sde-tech.com</a>.</p>
+
+      <h3>Limited Use</h3>
+      <p>SDE Voice's use and transfer to any other app of information received from Google
+      APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+      including the Limited Use requirements.</p>
+      <ul>
+        <li>We do not transfer Google user data except to provide or improve user-facing
+        features, for security, or to comply with law.</li>
+        <li>We do not use Google user data for advertising.</li>
+        <li>We do not allow humans to read Google user data except with the user&rsquo;s
+        consent, for security, to comply with law, or when the data is aggregated and
+        anonymized for internal operations.</li>
+      </ul>
+
+      <h2>5. How we share your information</h2>
       <p>We do not sell, rent, or trade your personal information. We share information only
       as needed with:</p>
       <ul>
@@ -1126,30 +1167,30 @@ PRIVACY_BODY = f"""
         <li>Law enforcement or other parties when required by a valid legal process.</li>
       </ul>
 
-      <h2>5. Data retention</h2>
+      <h2>6. Data retention</h2>
       <p>We keep your information only as long as needed to fulfill the purposes described
       in this policy or as required by law. You may ask us to delete your information at
       any time by emailing <a href="mailto:info@sde-tech.com">info@sde-tech.com</a>.</p>
 
-      <h2>6. Security</h2>
+      <h2>7. Security</h2>
       <p>We use reasonable administrative, technical, and physical safeguards to protect the
       information you provide. No method of transmission over the internet is 100&#37;
       secure, but we work to follow current best practices.</p>
 
-      <h2>7. Children&rsquo;s privacy</h2>
+      <h2>8. Children&rsquo;s privacy</h2>
       <p>Our services are intended for businesses and adult professionals. We do not
       knowingly collect personal information from anyone under 18.</p>
 
-      <h2>8. Your choices</h2>
+      <h2>9. Your choices</h2>
       <p>You may opt out of SMS messages at any time by replying <strong>STOP</strong> to
       any text message we send. You may opt out of email contact by replying to any email
       from us or by emailing <a href="mailto:info@sde-tech.com">info@sde-tech.com</a>.</p>
 
-      <h2>9. Changes to this policy</h2>
+      <h2>10. Changes to this policy</h2>
       <p>We may update this policy from time to time. The &ldquo;Last updated&rdquo; date
       above will reflect the most recent revision.</p>
 
-      <h2>10. Contact us</h2>
+      <h2>11. Contact us</h2>
       <p>Questions about this Privacy Policy or about your data:<br>
       SDE Tech LLC<br>
       2912 Bee Ridge Road, Sarasota, FL 34239<br>
