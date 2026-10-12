@@ -603,7 +603,7 @@ form.contact-form .form-error {
   border-radius: var(--radius);
   background: var(--bg);
   color: #7F1010;
-  font-size: 14px;
+  font-size: var(--fs-sm);
   font-weight: 600;
   line-height: 1.4;
 }
