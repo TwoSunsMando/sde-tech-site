@@ -231,7 +231,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
   color: var(--white);
   padding: 96px 0 80px;
 }
-@media (max-width: 960px) {
+@media (max-width: 959.98px) {
   .hero { padding: 40px 0 32px; }
 }
 .hero h1 {
@@ -370,7 +370,7 @@ article.prose ul li { margin-bottom: 6px; }
   flex: 1 1 200px;
   max-width: 260px;
 }
-@media (max-width: 960px) {
+@media (max-width: 959.98px) {
   .tile { max-width: calc(50% - 10px); flex-basis: 180px; }
 }
 @media (max-width: 460px) {
@@ -510,12 +510,13 @@ article.prose ul li { margin-bottom: 6px; }
   gap: 24px;
   margin-top: 24px;
 }
-@media (max-width: 960px) { .team-grid { grid-template-columns: 1fr; } }
+@media (max-width: 959.98px) { .team-grid { grid-template-columns: 1fr; } }
 .team-card {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 28px;
+  max-width: 42rem;
 }
 .team-card .photo-placeholder {
   width: 96px;
