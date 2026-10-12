@@ -64,12 +64,12 @@
   <div class="container">
     <div class="contact-grid">
       <div>
-        <h2 style="margin-top:0;">Get in touch</h2>
+        <h2 class="contact-heading">Get in touch</h2>
         <p>Tell us what your business is dealing with and what you&rsquo;d like to change. We
         respond to inquiries within one business day.</p>
 
         <form id="contactForm" class="contact-form" action="https://voice-api.sde-tech.com/api/public/contact" method="POST">
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="text" name="_gotcha" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="cf-name">Your name</label>
             <input type="text" id="cf-name" name="name" required>
@@ -82,16 +82,18 @@
             <label for="cf-email">Email</label>
             <input type="email" id="cf-email" name="email" required>
           </div>
-          <div class="field">
-            <label for="cf-phone">Phone (optional)</label>
-            <input type="tel" id="cf-phone" name="phone">
+          <div class="field" id="cf-phone-field">
+            <label for="cf-phone">Phone <span id="cf-phone-requirement">(optional)</span></label>
+            <input type="tel" id="cf-phone" name="phone" aria-errormessage="cf-phone-error">
+            <p id="cf-phone-error" class="field-error" role="alert" hidden>Enter a phone number to receive texts.</p>
           </div>
           <div class="field checkbox-field">
-            <label class="checkbox-label" for="cf-sms-consent">
-              <input type="checkbox" id="cf-sms-consent" name="sms_consent" value="yes">
-              <span class="checkbox-body">
+            <div class="checkbox-card">
+              <label class="checkbox-label" for="cf-sms-consent">
+                <input type="checkbox" id="cf-sms-consent" name="sms_consent" value="yes" aria-describedby="sms-consent-terms">
                 <span class="checkbox-title">Yes, text me too</span>
-                <span class="checkbox-fine">
+              </label>
+              <p id="sms-consent-terms" class="checkbox-fine">
                   I agree to receive SMS messages from SDE Tech LLC about my inquiry and
                   my SDE Tech services &mdash; replies, appointment scheduling, support ticket
                   updates, service announcements, and, for SDE Voice (formerly SDE Voice Agents) clients, alerts
@@ -101,9 +103,8 @@
                   <a href="sms-messaging-policy.html">SMS Messaging Policy</a> and
                   <a href="privacy-policy.html">Privacy Policy</a>.
                   Optional &mdash; you can still submit this form without checking this box.
-                </span>
-              </span>
-            </label>
+              </p>
+            </div>
           </div>
           <div class="field">
             <label for="cf-topic">What can we help with?</label>
@@ -132,7 +133,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Send message</button>
           <p id="cf-status" class="form-status" role="status" aria-live="polite"></p>
-          <p class="help" style="margin-top:12px;">Prefer to write us directly? Email <a href="mailto:info@sde-tech.com">info@sde-tech.com</a>.</p>
+          <p class="help direct-note">Prefer to write us directly? Email <a href="mailto:info@sde-tech.com">info@sde-tech.com</a>.</p>
         </form>
 
         <script>
@@ -142,11 +143,59 @@
             var status = document.getElementById('cf-status');
             var btn = form.querySelector('button[type="submit"]');
             var origBtnText = btn.textContent;
+            var phone = document.getElementById('cf-phone');
+            var phoneField = document.getElementById('cf-phone-field');
+            var phoneNote = document.getElementById('cf-phone-requirement');
+            var phoneError = document.getElementById('cf-phone-error');
+            var consent = document.getElementById('cf-sms-consent');
+            var PHONE_ERROR = 'Enter a phone number to receive texts.';
+
+            function syncPhoneRequirement() {
+              var needed = !!(consent && consent.checked);
+              if (phone) {
+                if (needed) phone.setAttribute('required', '');
+                else phone.removeAttribute('required');
+                if (!needed) {
+                  phone.setCustomValidity('');
+                  phone.removeAttribute('aria-invalid');
+                }
+              }
+              if (phoneField) phoneField.classList.toggle('is-required', needed);
+              if (phoneNote) phoneNote.textContent = needed ? '(required)' : '(optional)';
+              if (!needed && phoneError) phoneError.hidden = true;
+            }
+
+            function flagPhoneError() {
+              var missing = consent && consent.checked && phone && phone.value.trim() === '';
+              if (!missing) {
+                if (phone) {
+                  phone.setCustomValidity('');
+                  phone.removeAttribute('aria-invalid');
+                }
+                if (phoneError) phoneError.hidden = true;
+                return;
+              }
+              phone.setCustomValidity(PHONE_ERROR);
+              phone.setAttribute('aria-invalid', 'true');
+              if (phoneError) phoneError.hidden = false;
+            }
+
+            if (consent) consent.addEventListener('change', syncPhoneRequirement);
+            if (phone) {
+              phone.addEventListener('input', function () {
+                if (phone.value.trim() !== '') flagPhoneError();
+              });
+            }
+            form.addEventListener('reset', function () {
+              window.setTimeout(syncPhoneRequirement, 0);
+            });
+            syncPhoneRequirement();
 
             form.addEventListener('submit', function (e) {
               e.preventDefault();
               status.className = 'form-status';
               status.textContent = '';
+              flagPhoneError();
 
               if (!form.checkValidity()) {
                 form.reportValidity();
