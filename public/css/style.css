@@ -489,32 +489,71 @@ form.contact-form .help {
   color: var(--slate-muted);
   margin-top: 6px;
 }
+form.contact-form .help.direct-note { margin-top: 12px; }
+
+.contact-heading { margin-top: 0; }
+
+/* No-JS API redirect: nginx SSI fills this from ?error=. Hidden when the param is absent. */
+form.contact-form .form-error {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid #B91C1C;
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: #7F1010;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Honeypot: kept out of view. The API drops the post when this is filled in. */
+form.contact-form .contact-honeypot { display: none; }
+
+form.contact-form .field.is-required #cf-phone-requirement {
+  color: #7F1010;
+  font-weight: 600;
+}
+form.contact-form .field-error {
+  margin: 6px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #7F1010;
+}
+form.contact-form .field-error[hidden] { display: none; }
+form.contact-form input[aria-invalid="true"] {
+  border-color: #B91C1C;
+}
 
 /* SMS opt-in checkbox — CTIA/TCPA compliant explicit consent.
-   Grid layout (auto | 1fr) forces checkbox-left + text-right at any width.
+   The label is only "Yes, text me too". The fine print is a sibling
+   paragraph (sms-consent-terms), linked with aria-describedby.
+   Grid layout (24px | 1fr) keeps the box on the left at any width.
    !important on width/padding for the checkbox specifically, because the
    generic form.contact-form input rule sets width: 100% and some browsers
    don't apply the more-specific override consistently. */
 form.contact-form .checkbox-field { margin-top: 4px; margin-bottom: 20px; }
-form.contact-form .checkbox-label {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 14px;
-  align-items: start;
-  font-weight: 400;
-  color: var(--slate-dark);
-  cursor: pointer;
+form.contact-form .checkbox-card {
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--bg);
   transition: border-color 120ms ease, background 120ms ease;
-  margin-bottom: 0;
 }
-form.contact-form .checkbox-label:hover { border-color: var(--slate-muted); }
-form.contact-form .checkbox-label:has(input:checked) {
+form.contact-form .checkbox-card:hover { border-color: var(--slate-muted); }
+form.contact-form .checkbox-card:has(input:checked) {
   border-color: var(--blue);
   background: rgba(30, 58, 138, 0.04);
+}
+form.contact-form .checkbox-label {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 14px;
+  align-items: center;
+  font-weight: 400;
+  color: var(--slate-dark);
+  cursor: pointer;
+  margin-bottom: 0;
 }
 form.contact-form .checkbox-label input[type="checkbox"] {
   width: 22px !important;
@@ -524,23 +563,18 @@ form.contact-form .checkbox-label input[type="checkbox"] {
   margin: 0 !important;
   accent-color: var(--blue);
   cursor: pointer;
-  align-self: start;
+  align-self: center;
   justify-self: start;
-}
-form.contact-form .checkbox-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
 }
 form.contact-form .checkbox-title {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--slate-dark);
   line-height: 1.3;
 }
 form.contact-form .checkbox-fine {
-  font-size: 12.5px;
+  margin: 6px 0 0 38px;
+  font-size: 14px;
   color: var(--slate-muted);
   line-height: 1.5;
 }
