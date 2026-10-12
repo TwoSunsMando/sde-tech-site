@@ -562,7 +562,7 @@ form.contact-form .checkbox-title {
 }
 form.contact-form .checkbox-fine {
   margin: 6px 0 0 38px;
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--slate-muted);
   line-height: 1.5;
 }
