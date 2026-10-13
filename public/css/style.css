@@ -175,7 +175,8 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 28px;
+  /* 16px, not 28px: "AI Products & Pricing" stays on one line inside the 1120px header. */
+  gap: 16px;
   align-items: center;
 }
 .primary-nav a {
@@ -183,12 +184,14 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
   font-weight: 600;
   font-size: var(--fs-sm);
   text-decoration: none;
+  white-space: nowrap;
 }
 .primary-nav a:hover { color: var(--blue); text-decoration: none; }
 .primary-nav a.active { color: var(--blue); }
 
-/* Eight menu items (Products added 2026-10-06): tighten between tablet and wide desktop */
+/* Same 1041–1180 band as PR #5. 12px type keeps "AI Products & Pricing" on one line; gap stays 14px. */
 @media (min-width: 1041px) and (max-width: 1180px) {
+  .primary-nav a { font-size: var(--fs-xs); white-space: nowrap; }
   .primary-nav ul { gap: 14px; }
 }
 
@@ -388,7 +391,8 @@ article.prose ul li { margin-bottom: 6px; }
   box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
   text-decoration: none;
 }
-.tile .icon {
+.tile .icon,
+.ai-featured .icon {
   width: 44px;
   height: 44px;
   background: var(--bg-alt);
@@ -408,6 +412,67 @@ article.prose ul li { margin-bottom: 6px; }
   color: var(--slate-muted);
   font-size: var(--fs-base);
 }
+
+/* Home AI products. Featured Voice tile spans the row; the other three sit under it. */
+.ai-product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+@media (min-width: 880px) {
+  .ai-product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.ai-product-grid .tile {
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+}
+.ai-featured {
+  grid-column: 1 / -1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  color: var(--slate-dark);
+}
+.ai-featured h3 {
+  margin: 0 0 8px;
+  font-size: var(--fs-xl);
+}
+.ai-price {
+  margin: 0 0 12px;
+  color: var(--blue);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.ai-lead {
+  max-width: 68ch;
+  margin: 0 0 16px;
+}
+.ai-featured-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+}
+.tile-more {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 16px;
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.tile-soon {
+  border-style: dashed;
+  border-color: var(--field-border);
+}
+.tile-soon:hover { border-style: solid; }
+.ai-products-all { margin-top: 32px; margin-bottom: 0; }
 
 /* ---------- Service-page two-column lists ---------- */
 
@@ -866,6 +931,89 @@ iframe.map {
   font-size: var(--fs-base);
 }
 .small { font-size: var(--fs-sm); }
+
+.product-jump {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 880px) {
+  .product-jump { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.product-jump li {
+  margin: 0;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.product-jump a { font-weight: 600; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+@media (min-width: 880px) {
+  .pricing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.plan {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  margin: 0;
+}
+.plan.is-popular { border-color: var(--blue); }
+.plan h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 12px;
+  font-size: var(--fs-xl);
+}
+.plan-badge {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--white);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.plan-price {
+  margin: 0;
+  color: var(--slate-dark);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.plan-period {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+.plan-unit {
+  margin: 4px 0 16px;
+  color: var(--slate-muted);
+}
+.plan ul { margin-bottom: 0; }
+.pricing-note { margin: 20px 0 0; }
+.pricing-note + .pricing-note { margin-top: 8px; }
+
+#voice,
+#voice-agents,
+#sms,
+#web-fax,
+#ai-products {
+  scroll-margin-top: 88px;
+}
 
 /* Honor the OS reduced-motion setting. */
 @media (prefers-reduced-motion: reduce) {
