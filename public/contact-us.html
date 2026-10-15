@@ -123,7 +123,16 @@
           <!--# elif expr="$arg_error" -->
           <p id="form-error" class="form-error" role="alert" tabindex="-1" autofocus>We couldn&rsquo;t send your message. Please check the form and try again.</p>
           <!--# endif -->
-          <input type="text" name="_gotcha" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <!-- Honeypot. Off-screen rather than display:none, which many fillers skip.
+               voice-api drops the message when _gotcha is non-blank and still returns success. -->
+          <div class="contact-honeypot" aria-hidden="true">
+            <input type="text" id="cf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" autocapitalize="off">
+          </div>
+          <!-- Page-render time in seconds. nginx replaces the token with $msec.
+               JS drops a submit sooner than 3s after the form is ready and shows the
+               normal thank-you. No-JS posts this value; voice-api should silent-drop
+               a timestamp younger than 3 seconds. A missing token must still deliver. -->
+          <input type="hidden" id="cf-started" name="form_started_at" value="__FORM_STARTED_AT__" autocomplete="off">
           <div class="field">
             <label for="cf-name">Your name</label>
             <input type="text" id="cf-name" name="name" required>
@@ -202,7 +211,26 @@
             var phoneNote = document.getElementById('cf-phone-requirement');
             var phoneError = document.getElementById('cf-phone-error');
             var consent = document.getElementById('cf-sms-consent');
+            var gotcha = document.getElementById('cf-gotcha');
+            var startedField = document.getElementById('cf-started');
             var PHONE_ERROR = 'Enter a phone number to receive texts.';
+            var SUCCESS_TEXT = "Thanks — we've got your message and will respond within one business day.";
+            var MIN_FILL_MS = 3000;
+            var filledAt = Date.now();
+
+            function keepStartedValue() {
+              if (startedField && !/^[0-9]+([.][0-9]+)?$/.test(startedField.value.trim())) {
+                startedField.value = String(filledAt);
+              }
+            }
+            keepStartedValue();
+
+            function acceptSilently() {
+              status.className = 'form-status success';
+              status.textContent = SUCCESS_TEXT;
+              form.reset();
+              keepStartedValue();
+            }
 
             function syncPhoneRequirement() {
               var needed = !!(consent && consent.checked);
@@ -262,6 +290,13 @@
                 return;
               }
 
+              var trapped = !!(gotcha && gotcha.value.trim());
+              var tooFast = (Date.now() - filledAt) < MIN_FILL_MS;
+              if (trapped || tooFast) {
+                acceptSilently();
+                return;
+              }
+
               btn.disabled = true;
               btn.textContent = 'Sending…';
 
@@ -282,8 +317,9 @@
                   btn.textContent = origBtnText;
                   if (data && data.ok === true) {
                     status.className = 'form-status success';
-                    status.textContent = "Thanks — we've got your message and will respond within one business day.";
+                    status.textContent = SUCCESS_TEXT;
                     form.reset();
+                    keepStartedValue();
                     return;
                   }
                   status.className = 'form-status error';
