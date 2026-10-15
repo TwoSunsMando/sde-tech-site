@@ -614,8 +614,30 @@ form.contact-form .form-error {
   line-height: 1.4;
 }
 
-/* Honeypot: kept out of view. The API drops the post when this is filled in. */
-form.contact-form .contact-honeypot { display: none; }
+/* Honeypot. Clipped off-screen instead of display:none, which many bots skip.
+   The field stays out of the tab order and the accessibility tree. voice-api
+   drops the post when it is filled in and still returns success. */
+form.contact-form { position: relative; }
+form.contact-form .contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  pointer-events: none;
+}
+form.contact-form .contact-honeypot input {
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
 
 form.contact-form .field.is-required #cf-phone-requirement {
   color: #7F1010;
