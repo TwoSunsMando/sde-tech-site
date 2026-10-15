@@ -31,7 +31,7 @@ NAV_ITEMS = [
     ("Website Services", "website-services.html", "website-services"),
     ("Software Development", "software-development.html", "software-development"),
     ("AI & Automation", "ai-automation.html", "ai-automation"),
-    ("Products", "products.html", "products"),
+    ("AI Products &amp; Pricing", "products.html", "products"),
     ("About", "about-us.html", "about"),
     ("Contact", "contact-us.html", "contact"),
 ]
@@ -154,6 +154,7 @@ def footer(absolute: bool = False) -> str:
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
         <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
+        <p><a href="{loc("products.html", absolute)}">AI Products &amp; Pricing</a></p>
       </div>
       <div>
         <h2 class="footer-heading">Partners</h2>
@@ -241,6 +242,7 @@ ICON_AI = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=
 
 ICON_SMS = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1z"/><path d="M8 10h8M8 13h5"/></svg>"""
 ICON_FAX = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h8l3 3v3"/><rect x="3" y="9" width="18" height="9" rx="1.5"/><path d="M7 18v3h10v-3M7 13h4"/></svg>"""
+ICON_SOON = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>"""
 
 HOME_TILES = f"""
 <section class="section">
@@ -280,27 +282,41 @@ HOME_TILES = f"""
 
 
 HOME_PRODUCTS = f"""
-<section class="section alt">
+<section class="section alt" id="ai-products">
   <div class="container">
-    <h2 class="center">Apps from SDE Tech</h2>
-    <p class="muted center-block flat">Business apps we build, run and support ourselves. Already a customer? Add one to your account.</p>
-    <div class="tile-grid">
-      <a class="tile" href="products.html#voice-agents">
+    <h2 class="center">AI products from SDE Tech</h2>
+    <p class="muted center-block flat">Ready-to-use apps we build, run and support ourselves, set up by the same local team you already call. More are on the way.</p>
+    <div class="ai-product-grid">
+      <article class="ai-featured">
         <div class="icon">{ICON_AI}</div>
-        <h3>SDE Voice</h3>
-        <p>An AI receptionist that answers every call, transfers to your team and takes messages after hours.</p>
-      </a>
+        <h3>SDE Voice: AI receptionist</h3>
+        <p class="ai-price">From $99/mo</p>
+        <p class="ai-lead">Gives callers a live answer instead of voicemail. Books appointments into your Google Calendar or Calendly during the call. Transfers callers to your team during business hours, including straight to 3CX extensions, and takes complete messages after hours. English on Basic; 12 languages on Standard and High-volume.</p>
+        <p class="ai-featured-links">
+          <a href="products.html#voice">See SDE Voice</a>
+          <a href="tel:+19412291384">Call it now <span class="nowrap">(941) 229-1384</span></a>
+        </p>
+      </article>
       <a class="tile" href="products.html#sms">
         <div class="icon">{ICON_SMS}</div>
-        <h3>SDE SMS</h3>
+        <h3>SDE SMS: business texting</h3>
         <p>Two-way business texting and text blasts for your whole team, from any browser or phone.</p>
+        <span class="tile-more">Learn more</span>
       </a>
       <a class="tile" href="products.html#web-fax">
         <div class="icon">{ICON_FAX}</div>
-        <h3>SDE Web Fax</h3>
+        <h3>SDE Web Fax: online faxing</h3>
         <p>Send faxes from your browser with a branded cover page and a full history. No fax machine needed.</p>
+        <span class="tile-more">Learn more</span>
+      </a>
+      <a class="tile tile-soon" href="contact-us.html?topic=products#contactForm">
+        <div class="icon">{ICON_SOON}</div>
+        <h3>More AI products coming</h3>
+        <p>Tell us what you&rsquo;d like to automate, and we&rsquo;ll let you know when it&rsquo;s ready.</p>
+        <span class="tile-more">Tell us</span>
       </a>
     </div>
+    <p class="center ai-products-all"><a href="products.html">See all products and pricing &rsaquo;</a></p>
   </div>
 </section>
 """
@@ -310,32 +326,33 @@ PRODUCTS_BODY = f"""
 <section class="section">
   <div class="container">
     <article class="prose">
-      <p>Alongside IT, phones and websites, SDE Tech builds and runs its own business apps. Each one is
-      set up and supported by the same local team you already call. Existing customers can sign in below;
-      to add one to your account, <a href="contact-us.html?topic=products#contactForm">ask us for pricing</a>.</p>
+      <p>SDE Voice, SDE SMS, and SDE Web Fax are AI products we build, run, and support ourselves,
+      set up by the same local team you already call. SDE Voice plans are below. For SDE SMS and
+      SDE Web Fax, <a href="contact-us.html?topic=products#contactForm">ask us for pricing</a>.</p>
     </article>
+    <ul class="product-jump">
+      <li><a href="#voice">SDE Voice</a> &mdash; AI receptionist, from $99/mo</li>
+      <li><a href="#sms">SDE SMS</a> &mdash; business texting. Ask for pricing.</li>
+      <li><a href="#web-fax">SDE Web Fax</a> &mdash; online faxing. Ask for pricing.</li>
+    </ul>
   </div>
 </section>
 
-<section class="section alt" id="voice-agents">
+<section class="section alt" id="voice">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col" id="voice-agents">
       <div>
         <p class="eyebrow">{ICON_AI} SDE Voice</p>
-        <h2 class="heading-flush">An AI receptionist that answers every call.</h2>
-        <p>Day or night, every caller gets a friendly, natural voice that knows your business, instead of
+        <h2 class="heading-flush">An AI receptionist so callers get a live answer, not voicemail.</h2>
+        <p>Day or night, callers hear a friendly, natural voice that knows your business, instead of
         voicemail or a phone tree.</p>
         <ul class="feature-list">
-          <li>Answers in English, Spanish and other languages</li>
-          <li>Transfers callers to the right person during office hours, including straight to 3CX extensions</li>
+          <li>Books appointments into your Google Calendar or Calendly during the call.</li>
+          <li>Transfers callers to the right person during business hours, including straight to your 3CX extensions. <strong>Works with 3CX.</strong></li>
           <li>Takes complete messages after hours and emails them to your team</li>
           <li>Screens out sales and spam calls</li>
           <li>Change the greeting, hours, answers and who gets which calls from an online dashboard</li>
         </ul>
-        <div class="product-actions">
-          <a class="btn btn-primary" href="https://voiceai.sde-tech.com/signup">Request SDE Voice</a>
-          <a class="btn btn-secondary" href="contact-us.html?topic=voice#contactForm">Ask for pricing</a>
-        </div>
       </div>
       <div class="product-card">
         <h3>Hear it for yourself</h3>
@@ -349,6 +366,49 @@ PRODUCTS_BODY = f"""
         </ul>
         <p class="signin">Already a customer? <a href="https://voiceai.sde-tech.com/login" target="_blank" rel="noopener">Sign in to SDE Voice &rsaquo;</a></p>
       </div>
+    </div>
+    <div class="pricing-grid">
+      <article class="plan">
+        <h3>Basic</h3>
+        <p class="plan-price">$99<span class="plan-period">/mo</span></p>
+        <p class="plan-unit">per agent</p>
+        <ul>
+          <li>500 connected minutes</li>
+          <li>English only</li>
+          <li>Click-to-call and call back</li>
+        </ul>
+      </article>
+      <article class="plan is-popular">
+        <h3>Standard <span class="plan-badge">Most popular</span></h3>
+        <p class="plan-price">$199<span class="plan-period">/mo</span></p>
+        <p class="plan-unit">per agent</p>
+        <ul>
+          <li>1,000 connected minutes</li>
+          <li>12 languages</li>
+          <li>Click-to-call and call back</li>
+          <li>Advanced routing</li>
+          <li>Caller-name display</li>
+        </ul>
+      </article>
+      <article class="plan">
+        <h3>High-volume</h3>
+        <p class="plan-price">$299<span class="plan-period">/mo</span></p>
+        <p class="plan-unit">per agent</p>
+        <ul>
+          <li>1,500 connected minutes</li>
+          <li>12 languages</li>
+          <li>Click-to-call and call back</li>
+          <li>Advanced routing</li>
+          <li>Caller-name display</li>
+        </ul>
+      </article>
+    </div>
+    <p class="pricing-note">Past your plan&rsquo;s minutes: $0.25 per connected minute.</p>
+    <p class="pricing-note muted">A connected minute is the time from answer to hangup, including transfers, rounded up on each call.</p>
+    <div class="product-actions">
+      <a class="btn btn-primary" href="https://voiceai.sde-tech.com/signup">Get SDE Voice</a>
+      <a class="btn btn-secondary" href="tel:+19412291384">Hear it: <span class="nowrap">(941) 229-1384</span></a>
+      <a href="contact-us.html?topic=voice#contactForm">Questions? Ask us</a>
     </div>
   </div>
 </section>
@@ -420,8 +480,8 @@ PRODUCTS_BODY = f"""
 
 <section class="cta-band">
   <div class="container">
-    <h2>Want one of these on your account?</h2>
-    <p>Tell us which app and roughly how your team would use it. We&rsquo;ll send pricing and get you set up.</p>
+    <h2>Want SDE SMS or SDE Web Fax?</h2>
+    <p>Tell us which one and how your team would use it. We&rsquo;ll send pricing and get you set up.</p>
     <p class="cta-follow"><a class="btn btn-light" href="contact-us.html?topic=products#contactForm">Ask for pricing</a></p>
   </div>
 </section>
@@ -1521,7 +1581,7 @@ NOT_FOUND_BODY = """
       <p>Sorry, that page isn&rsquo;t here. It may have moved, or the address may have been typed wrong.</p>
       <ul>
         <li><a href="/index.html">Home</a></li>
-        <li><a href="/products.html">Products</a></li>
+        <li><a href="/products.html">AI Products &amp; Pricing</a></li>
         <li><a href="/contact-us.html">Contact</a></li>
       </ul>
     </article>
@@ -1604,10 +1664,10 @@ PAGES = [
     },
     {
         "slug": "products",
-        "title": "Products | SDE Voice, SDE SMS, SDE Web Fax | SDE Tech",
-        "page_h1": "Products",
-        "description": "Business apps built and supported by SDE Tech in Sarasota: SDE Voice AI receptionist, SDE SMS business texting, and SDE Web Fax online faxing.",
-        "breadcrumb": "Products",
+        "title": "AI Products &amp; Pricing | SDE Voice, SDE SMS, SDE Web Fax | SDE Tech",
+        "page_h1": "AI Products &amp; Pricing",
+        "description": "SDE Voice AI receptionist from $99/mo, plus SDE SMS business texting and SDE Web Fax. Built, run and supported by SDE Tech in Sarasota.",
+        "breadcrumb": "AI Products &amp; Pricing",
         "body": PRODUCTS_BODY,
     },
     {
