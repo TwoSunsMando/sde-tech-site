@@ -535,6 +535,11 @@ CONTACT_BODY = """
                normal thank-you. No-JS posts this value; voice-api should silent-drop
                a timestamp younger than 3 seconds. A missing token must still deliver. -->
           <input type="hidden" id="cf-started" name="form_started_at" value="__FORM_STARTED_AT__" autocomplete="off">
+          <!-- Signed form_token from GET /api/public/contact/token. JS fills this
+               when the form script starts. It stays blank if that request fails,
+               and a blank value is not posted. The API treats a missing token as
+               optional until CONTACT_FORM_TOKEN_REQUIRED is on. -->
+          <input type="hidden" id="cf-token" name="form_token" value="" autocomplete="off">
           <div class="field">
             <label for="cf-name">Your name</label>
             <input type="text" id="cf-name" name="name" required>
@@ -615,10 +620,14 @@ CONTACT_BODY = """
             var consent = document.getElementById('cf-sms-consent');
             var gotcha = document.getElementById('cf-gotcha');
             var startedField = document.getElementById('cf-started');
+            var tokenField = document.getElementById('cf-token');
             var PHONE_ERROR = 'Enter a phone number to receive texts.';
             var SUCCESS_TEXT = "Thanks — we've got your message and will respond within one business day.";
             var MIN_FILL_MS = 3000;
+            var TOKEN_URL = 'https://voice-api.sde-tech.com/api/public/contact/token';
+            var TOKEN_RE = /^[0-9]{12,16}\\.[0-9a-f]{32}\\.[0-9a-f]{64}$/;
             var filledAt = Date.now();
+            var tokenRequest = 0;
 
             function keepStartedValue() {
               if (startedField && !/^[0-9]+([.][0-9]+)?$/.test(startedField.value.trim())) {
@@ -626,6 +635,38 @@ CONTACT_BODY = """
               }
             }
             keepStartedValue();
+
+            function applyToken(token) {
+              var value = token || '';
+              if (!tokenField) return;
+              tokenField.value = value;
+              tokenField.defaultValue = value;
+            }
+
+            function loadFormToken() {
+              var requestId = ++tokenRequest;
+              fetch(TOKEN_URL, {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+              })
+                .then(function (res) {
+                  if (!res.ok) return null;
+                  return res.text().then(function (text) {
+                    try { return text ? JSON.parse(text) : null; } catch (err) { return null; }
+                  });
+                })
+                .then(function (data) {
+                  if (requestId !== tokenRequest) return;
+                  var token = data && data.ok === true && typeof data.form_token === 'string'
+                    ? data.form_token.trim() : '';
+                  if (!TOKEN_RE.test(token)) return;
+                  applyToken(token);
+                })
+                .catch(function () {
+                  // Leave form_token blank. The post still goes out without one.
+                });
+            }
+            loadFormToken();
 
             function acceptSilently() {
               status.className = 'form-status success';
@@ -702,9 +743,12 @@ CONTACT_BODY = """
               btn.disabled = true;
               btn.textContent = 'Sending…';
 
+              var payload = new FormData(form);
+              if (!(tokenField && tokenField.value.trim())) payload.delete('form_token');
+
               fetch(form.action, {
                 method: 'POST',
-                body: new URLSearchParams(new FormData(form)),
+                body: new URLSearchParams(payload),
                 headers: { 'Accept': 'application/json' }
               })
                 .then(function (res) {
@@ -720,8 +764,10 @@ CONTACT_BODY = """
                   if (data && data.ok === true) {
                     status.className = 'form-status success';
                     status.textContent = SUCCESS_TEXT;
+                    applyToken('');
                     form.reset();
                     keepStartedValue();
+                    loadFormToken();
                     return;
                   }
                   status.className = 'form-status error';
