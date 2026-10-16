@@ -90,7 +90,14 @@
       <li><a href="website-services.html">Website Services</a></li>
       <li><a href="software-development.html">Software Development</a></li>
       <li><a href="ai-automation.html">AI & Automation</a></li>
-      <li><a href="products.html">AI Products &amp; Pricing</a></li>
+      <li class="nav-products">
+        <a href="products.html" aria-haspopup="true" aria-controls="products-menu">AI Products</a>
+        <ul id="products-menu" class="products-menu">
+          <li><a href="https://voice.sde-tech.com/?utm_source=sde-tech&amp;utm_medium=referral&amp;utm_campaign=sde-voice&amp;utm_content=nav" data-umami-event="nav-sde-voice">SDE Voice</a></li>
+          <li><a href="products.html#sms">SDE SMS</a></li>
+          <li><a href="products.html#web-fax">SDE Web Fax</a></li>
+        </ul>
+      </li>
       <li><a href="about-us.html">About</a></li>
       <li><a href="contact-us.html">Contact</a></li>
       </ul>
@@ -122,7 +129,7 @@
 
 <section class="hero">
   <div class="container">
-    <h1>One Sarasota team for IT, phones, websites, software, and AI.</h1>
+    <h1>The local team behind your business technology.</h1>
     <p class="lead">SDE Tech is the long-running local partner small and mid-size businesses
     turn to when they want their technology handled by people they can actually reach. No
     outsourced help desks. No vendor sprawl. Just the core technology that keeps your business
@@ -130,6 +137,7 @@
     <div class="hero-actions">
       <a class="btn btn-light" href="contact-us.html">Talk to our team</a>
       <a class="btn btn-outline-light" href="about-us.html">About SDE Tech</a>
+      <a class="hero-text-link" href="https://voice.sde-tech.com/?utm_source=sde-tech&amp;utm_medium=referral&amp;utm_campaign=sde-voice&amp;utm_content=hero" data-umami-event="hero-see-sde-voice">See SDE Voice</a>
     </div>
   </div>
 </section>
@@ -168,21 +176,30 @@
   </div>
 </section>
 
-<section class="section alt" id="ai-products">
+<section class="voice-band" aria-labelledby="voice-band-heading">
+  <div class="container">
+    <div class="voice-band-inner">
+      <div>
+        <p class="eyebrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10v4M7 6v12M11 3v18M15 7v10M19 10v4"/></svg> SDE Voice</p>
+        <h2 id="voice-band-heading" class="heading-flush">Someone should pick up, even when your team can&rsquo;t.</h2>
+        <p>SDE Voice is our AI receptionist. Plans and the rest of the story are on the SDE Voice site.</p>
+        <p class="voice-band-link"><a href="https://voice.sde-tech.com/?utm_source=sde-tech&amp;utm_medium=referral&amp;utm_campaign=sde-voice&amp;utm_content=home-band" data-umami-event="home-voice-band">See SDE Voice</a></p>
+      </div>
+      <figure class="voice-stat">
+        <blockquote>
+          <p>Nearly 2 out of 3 callers never reached a person.</p>
+        </blockquote>
+        <figcaption>SDE Tech call-log analysis, two businesses, one month, 2026.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ai-products">
   <div class="container">
     <h2 class="center">AI products from SDE Tech</h2>
     <p class="muted center-block flat">Ready-to-use apps we build, run and support ourselves, set up by the same local team you already call. More are on the way.</p>
     <div class="ai-product-grid">
-      <article class="ai-featured">
-        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.7 4.8L18.5 9.5l-4.8 1.7L12 16l-1.7-4.8L5.5 9.5l4.8-1.7L12 3z"/><path d="M18.5 16l.9 2.6L22 19.5l-2.6.9L18.5 23l-.9-2.6L15 19.5l2.6-.9L18.5 16z"/></svg></div>
-        <h3>SDE Voice: AI receptionist</h3>
-        <p class="ai-price">From $99/mo</p>
-        <p class="ai-lead">Gives callers a live answer instead of voicemail. Books appointments into your Google Calendar or Calendly during the call. Transfers callers to your team during business hours, including straight to 3CX extensions, and takes complete messages after hours. English on Basic; 12 languages on Standard and High-volume.</p>
-        <p class="ai-featured-links">
-          <a href="products.html#voice">See SDE Voice</a>
-          <a href="tel:+19412291384">Call it now <span class="nowrap">(941) 229-1384</span></a>
-        </p>
-      </article>
       <a class="tile" href="products.html#sms">
         <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1z"/><path d="M8 10h8M8 13h5"/></svg></div>
         <h3>SDE SMS: business texting</h3>
@@ -202,7 +219,7 @@
         <span class="tile-more">Tell us</span>
       </a>
     </div>
-    <p class="center ai-products-all"><a href="products.html">See all products and pricing &rsaquo;</a></p>
+    <p class="center ai-products-all"><a href="products.html">See all AI products &rsaquo;</a></p>
   </div>
 </section>
 
@@ -240,7 +257,7 @@
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
         <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
-        <p><a href="products.html">AI Products &amp; Pricing</a></p>
+        <p><a href="products.html">AI Products</a></p>
       </div>
       <div>
         <h2 class="footer-heading">Partners</h2>
@@ -257,7 +274,7 @@
       <div>
         <h2 class="footer-heading">Customer sign-in</h2>
         <ul>
-          <li><a href="https://voiceai.sde-tech.com/login" target="_blank" rel="noopener">SDE Voice</a></li>
+          <li><a href="https://voice.sde-tech.com/?utm_source=sde-tech&amp;utm_medium=referral&amp;utm_campaign=sde-voice&amp;utm_content=footer" data-umami-event="footer-sde-voice" target="_blank" rel="noopener">SDE Voice</a></li>
           <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
           <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
         </ul>
