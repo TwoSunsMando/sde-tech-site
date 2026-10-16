@@ -1169,7 +1169,7 @@ AI_AUTOMATION_BODY = """
       same way we&rsquo;ve built production software for two decades. No hype, no science
       projects. Just automation that earns its keep.</p>
       <p><a href="products.html#voice-agents"><strong>SDE Voice</strong></a>, our AI
-      receptionist, answers our own phone lines. Give it a try: call <a href="tel:+18663712265" class="nowrap">866-371-2265</a>.
+      receptionist, answers our own phone lines. Give it a try: call <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a>.
       <a href="contact-us.html?topic=voice">Book a full demo</a>.</p>
     </article>
     <a class="voice-link-card" href="__VOICE_AI_URL__" data-umami-event="ai-voice-card">
