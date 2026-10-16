@@ -1168,8 +1168,9 @@ AI_AUTOMATION_BODY = """
       and ships practical AI tools that handle real work for real businesses &mdash; the
       same way we&rsquo;ve built production software for two decades. No hype, no science
       projects. Just automation that earns its keep.</p>
-      <p>Want to hear one? <a href="products.html#voice-agents"><strong>SDE Voice</strong></a>, our AI
-      receptionist, answers our own phone lines. Call <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a> to hear it.</p>
+      <p><a href="products.html#voice-agents"><strong>SDE Voice</strong></a>, our AI
+      receptionist, answers our own phone lines. Give it a try: call <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a>.
+      <a href="contact-us.html?topic=voice">Book a full demo</a>.</p>
     </article>
     <a class="voice-link-card" href="__VOICE_AI_URL__" data-umami-event="ai-voice-card">
       <span class="icon">__ICON_WAVE__</span>
