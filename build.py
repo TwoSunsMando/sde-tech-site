@@ -101,7 +101,7 @@ def header(active_key: str, absolute: bool = False) -> str:
             # Plain "SDE Voice" is the first item. No pill, no "Try".
             items.append(
                 '      <li class="nav-products">\n'
-                f'        <a href="{loc(href, absolute)}"{cls} aria-haspopup="true" aria-controls="products-menu">{label}</a>\n'
+                f'        <a href="{loc(href, absolute)}"{cls}>{label}</a>\n'
                 '        <ul id="products-menu" class="products-menu">\n'
                 f'          <li><a href="{voice_url("nav")}" data-umami-event="nav-sde-voice">SDE Voice</a></li>\n'
                 f'          <li><a href="{loc("products.html#sms", absolute)}">SDE SMS</a></li>\n'
@@ -177,6 +177,7 @@ def footer(absolute: bool = False) -> str:
         <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
         <p><a href="{loc("products.html", absolute)}">AI Products</a></p>
+        <p><a href="{voice_url("footer")}" data-umami-event="footer-sde-voice">SDE Voice</a></p>
       </div>
       <div>
         <h2 class="footer-heading">Partners</h2>
@@ -193,7 +194,7 @@ def footer(absolute: bool = False) -> str:
       <div>
         <h2 class="footer-heading">Customer sign-in</h2>
         <ul>
-          <li><a href="{voice_url("footer")}" data-umami-event="footer-sde-voice" target="_blank" rel="noopener">SDE Voice</a></li>
+          <li><a href="https://voiceai.sde-tech.com/login" target="_blank" rel="noopener">SDE Voice</a></li>
           <li><a href="https://webtext.sde-tech.com" target="_blank" rel="noopener">SDE SMS</a></li>
           <li><a href="https://webfax.sde-tech.com" target="_blank" rel="noopener">SDE Web Fax</a></li>
         </ul>
@@ -306,7 +307,7 @@ HOME_TILES = f"""
 
 
 # Solid band (no gradient). The stat and its source line are copied from
-# https://voice.sde-tech.com/ — h2#problem-heading and p.source.
+# https://voice.sde-tech.com/ — p.stat-num, p.stat-label, and p.source.
 HOME_VOICE_BAND = f"""
 <section class="voice-band" aria-labelledby="voice-band-heading">
   <div class="container">
@@ -319,7 +320,7 @@ HOME_VOICE_BAND = f"""
       </div>
       <figure class="voice-stat">
         <blockquote>
-          <p>Nearly 2 out of 3 callers never reached a person.</p>
+          <p>2 in 3 callers never reached a person (469 of 753 calls in a month)</p>
         </blockquote>
         <figcaption>SDE Tech call-log analysis, two businesses, one month, 2026.</figcaption>
       </figure>
@@ -400,9 +401,7 @@ PRODUCTS_BODY = f"""
     </div>
     <div class="product-actions">
       <a class="btn btn-primary" href="{voice_url("products-explore")}" data-umami-event="products-explore-voice">Explore SDE Voice</a>
-      <a class="btn btn-secondary" href="https://voiceai.sde-tech.com/signup">Request SDE Voice</a>
       <a class="btn btn-secondary" href="tel:+19412291384">Hear it:&nbsp;<span class="nowrap">(941) 229-1384</span></a>
-      <a href="contact-us.html?topic=voice#contactForm">Questions? Ask us</a>
     </div>
   </div>
 </section>
