@@ -383,7 +383,7 @@ PRODUCTS_BODY = f"""
       <div>
         <p class="eyebrow">{ICON_WAVE} SDE Voice</p>
         <h2 class="heading-flush">An AI receptionist so callers get a live answer, not voicemail.</h2>
-        <p>Day or night, callers hear a friendly, natural voice that knows your business, instead of
+        <p>Callers hear a friendly, natural voice that knows your business, instead of
         voicemail or a phone tree. Plans and the full feature list are on the SDE Voice site.</p>
       </div>
       <div class="product-card">
