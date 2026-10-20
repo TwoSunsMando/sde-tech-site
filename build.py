@@ -174,7 +174,7 @@ def footer(absolute: bool = False) -> str:
       <div>
         <h2 class="footer-heading">SDE Tech</h2>
         <p>2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
-        <p>P: <a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
+        <p>Contact <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
         <p><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
         <p><a href="{loc("products.html", absolute)}">AI Products</a></p>
         <p><a href="{voice_url("footer")}" data-umami-event="footer-sde-voice">SDE Voice</a></p>
@@ -389,7 +389,7 @@ PRODUCTS_BODY = f"""
       <div class="product-card">
         <h3>Hear it for yourself</h3>
         <p>SDE Tech's own phone lines are answered by SDE Voice. Call and ask it anything about SDE Tech.</p>
-        <p class="product-phone"><a href="tel:+19412291384" class="nowrap">(941) 229-1384</a></p>
+        <p class="product-phone"><a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
         <h3>Good for</h3>
         <ul>
           <li>Offices that miss calls when everyone is busy</li>
@@ -401,7 +401,7 @@ PRODUCTS_BODY = f"""
     </div>
     <div class="product-actions">
       <a class="btn btn-primary" href="{voice_url("products-explore")}" data-umami-event="products-explore-voice">Explore SDE Voice</a>
-      <a class="btn btn-secondary" href="tel:+19412291384">Hear it:&nbsp;<span class="nowrap">(941) 229-1384</span></a>
+      <a class="btn btn-secondary" href="tel:+19413631685">Hear it:&nbsp;<span class="nowrap">(941) 363-1685</span></a>
     </div>
   </div>
 </section>
@@ -845,7 +845,7 @@ CONTACT_BODY = """
           <p class="label">Office</p>
           <p class="value">2912 Bee Ridge Road<br>Sarasota, FL 34239</p>
           <p class="label">Phone</p>
-          <p class="value"><a href="tel:+18663712265">866-371-2265</a><br>Local: <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a><br><small>Our phone lines are answered by SDE Tech's own AI receptionist, the same one we set up for businesses.</small></p>
+          <p class="value"><a href="tel:+19413631685" class="nowrap">(941) 363-1685</a><br><small>Our phone lines are answered by SDE Tech's own AI receptionist, the same one we set up for businesses.</small></p>
           <p class="label">Email</p>
           <p class="value"><a href="mailto:info@sde-tech.com">info@sde-tech.com</a></p>
           <p class="label">Hours</p>
@@ -1357,7 +1357,7 @@ PRIVACY_BODY = f"""
       SDE Tech LLC<br>
       2912 Bee Ridge Road, Sarasota, FL 34239<br>
       <a href="mailto:info@sde-tech.com">info@sde-tech.com</a><br>
-      866-371-2265</p>
+      <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
     </article>
   </div>
 </section>
@@ -1449,7 +1449,7 @@ TOS_BODY = f"""
       <p>SDE Tech LLC<br>
       2912 Bee Ridge Road, Sarasota, FL 34239<br>
       <a href="mailto:info@sde-tech.com">info@sde-tech.com</a><br>
-      866-371-2265</p>
+      <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a></p>
     </article>
   </div>
 </section>
@@ -1499,7 +1499,7 @@ SMS_BODY = f"""
       <p><strong>Reply STOP at any time to unsubscribe.</strong> Once you reply STOP, we
       will send a single confirmation message and you will not receive further SMS messages
       from SDE Tech unless you opt back in. Reply <strong>HELP</strong> for help, or contact
-      us at <a href="mailto:info@sde-tech.com">info@sde-tech.com</a> or 866-371-2265.</p>
+      us at <a href="mailto:info@sde-tech.com">info@sde-tech.com</a> or <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a>.</p>
 
       <h2>Message frequency</h2>
       <p>Message frequency varies based on your inquiry. Typical interactions involve a
@@ -1536,7 +1536,7 @@ SMS_BODY = f"""
       <p>For questions about SDE Tech&rsquo;s SMS messaging program, contact:<br>
       SDE Tech LLC<br>
       <a href="mailto:info@sde-tech.com">info@sde-tech.com</a><br>
-      866-371-2265<br>
+      <a href="tel:+19413631685" class="nowrap">(941) 363-1685</a><br>
       2912 Bee Ridge Road, Sarasota, FL 34239</p>
     </article>
   </div>
@@ -1561,7 +1561,7 @@ HOME_JSON_LD = (
             "url": "https://sde-tech.com/",
             "email": "info@sde-tech.com",
             "image": "https://sde-tech.com/images/sde_tech_logo_web.png",
-            "telephone": "866-371-2265",
+            "telephone": "(941) 363-1685",
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "2912 Bee Ridge Road",
@@ -1571,11 +1571,6 @@ HOME_JSON_LD = (
                 "addressCountry": "US",
             },
             "contactPoint": [
-                {
-                    "@type": "ContactPoint",
-                    "telephone": "866-371-2265",
-                    "contactType": "customer service",
-                },
                 {
                     "@type": "ContactPoint",
                     "telephone": "(941) 363-1685",
@@ -1642,7 +1637,7 @@ PAGES = [
     {
         "slug": "contact-us",
         "title": "Contact SDE Tech",
-        "description": "Reach SDE Tech in Sarasota, Florida. Phone 866-371-2265, email info@sde-tech.com, or send a message through our contact form.",
+        "description": "Reach SDE Tech in Sarasota, Florida. Phone (941) 363-1685, email info@sde-tech.com, or send a message through our contact form.",
         "active_key": "contact",
         "breadcrumb": "Contact",
         "body": CONTACT_BODY,
